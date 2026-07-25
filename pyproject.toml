@@ -1,10 +1,29 @@
 [project]
 name = "red_rising"
 version = "0.1.0"
-description = "Add your description here"
+description = "A digital implementation of the Red Rising board game"
 readme = "README.md"
-requires-python = ">=3.14"
-dependencies = []
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "pydantic>=2.10",
+]
+
+[project.optional-dependencies]
+app = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.34",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "hypothesis>=6.122",
+    "ruff>=0.9",
+    "httpx>=0.28",  # Starlette TestClient (WebSocket integration tests)
+    # Only needed to regenerate cards.json from the parquet; the engine reads JSON.
+    "pandas>=2.2",
+    "pyarrow>=19.0",
+]
 
 [build-system]
 requires = ["hatchling"]
@@ -12,3 +31,14 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["red_rising"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
