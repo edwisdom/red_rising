@@ -1,0 +1,4015 @@
+{
+  "cards": [
+    {
+      "id": "4d-painter",
+      "name": "4D Painter",
+      "color": "Violet",
+      "role": "artist",
+      "core_value": 9,
+      "deploy": {
+        "text": "Move a card from this location to the top of another location where there are no cards with the same color as it.",
+        "raw": "Move a card from this location to the top of another location where there are no cards with the same color as it.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 31,
+          "condition": "if each of your cards is a different color.",
+          "raw": "31: if each of your cards is a different color.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "administrator",
+      "name": "Administrator",
+      "color": "Copper",
+      "role": "bureaucrat",
+      "core_value": 15,
+      "deploy": {
+        "text": "If deployed on the Institute, reveal the top 2 cards of the deck and place them under this card in any order.",
+        "raw": "If [deployed](#deploy) on the Institute, [reveal](#reveal) the top 2 cards of the deck and place them under this card in any order.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if you have the least Influence on the Institute (or tied for the least).",
+          "raw": "15: if you have the least Influence on the Institute (or tied for the least).",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "aegis-craftsman",
+      "name": "Aegis Craftsman",
+      "color": "Orange",
+      "role": "engineer",
+      "core_value": 15,
+      "deploy": {
+        "text": "You may gain a Gold from this location. If you do, end your turn.",
+        "raw": "You may gain a [Gold](#golds) from this location. If you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as having the same name as any specific character.",
+        "raw": "You may treat this card as having the same name as any specific character.",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "if with a Gold.",
+          "raw": "10: if with a [Gold](#golds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gold",
+              "target": "Gold"
+            }
+          ]
+        },
+        {
+          "points": 10,
+          "condition": "if with no Obsidians.",
+          "raw": "10: if with no [Obsidians](#obsidians).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Obsidians",
+              "target": "Obsidian"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "aja",
+      "name": "Aja",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 15,
+      "deploy": {
+        "text": "Choose an opponent; they banish 1 of their cards. Then banish Aja.",
+        "raw": "Choose an opponent; they [banish](#banish) 1 of their cards. Then banish Aja.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if with Octavia.",
+          "raw": "15: if with [Octavia](#octavia).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Octavia",
+              "target": "octavia"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "alfrun",
+      "name": "Alfrun",
+      "color": "Obsidian",
+      "role": "assassin",
+      "core_value": 10,
+      "deploy": {
+        "text": "You may gain Nero or Jopho from this location. If you do, regain Alfrun and end your turn.",
+        "raw": "You may gain [Nero](#nero) or [Jopho](#jopho) from this location. If you do, regain Alfrun and end your turn.",
+        "refs": [
+          {
+            "kind": "character",
+            "label": "Nero",
+            "target": "nero"
+          },
+          {
+            "kind": "character",
+            "label": "Jopho",
+            "target": "jopho"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "if with Nero.",
+          "raw": "10: if with [Nero](#nero).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Nero",
+              "target": "nero"
+            }
+          ]
+        },
+        {
+          "points": 10,
+          "condition": "if with Jopho.",
+          "raw": "10: if with [Jopho](#jopho).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Jopho",
+              "target": "jopho"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "alia-snowsparrow",
+      "name": "Alia Snowsparrow",
+      "color": "Obsidian",
+      "role": "assassin",
+      "core_value": 16,
+      "deploy": {
+        "text": "Banish the top non-Gold card from any other location. If it's not Gray or Obsidian, gain 1 Helium.",
+        "raw": "[Banish](#banish) the top non-Gold card from any other location. If it's not [Gray](#grays) or [Obsidian](#obsidians), gain 1 Helium.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gray",
+            "target": "Gray"
+          },
+          {
+            "kind": "color",
+            "label": "Obsidian",
+            "target": "Obsidian"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 24,
+          "condition": "if only with Golds, Grays, and/or Obsidians.",
+          "raw": "24: if only with [Golds](#golds), [Grays](#grays), and/or [Obsidians](#obsidians).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Golds",
+              "target": "Gold"
+            },
+            {
+              "kind": "color",
+              "label": "Grays",
+              "target": "Gray"
+            },
+            {
+              "kind": "color",
+              "label": "Obsidians",
+              "target": "Obsidian"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "antonia",
+      "name": "Antonia",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 15,
+      "deploy": {
+        "text": "Choose an opponent. They banish 1 of their cards. Then, banish Antonia.",
+        "raw": "Choose an opponent. They [banish](#banish) 1 of their cards. Then, banish Antonia.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if with The Jackal or 2 other Golds.",
+          "raw": "15: if with [The Jackal](#the-jackal) or 2 other [Golds](#golds).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "The Jackal",
+              "target": "jackal"
+            },
+            {
+              "kind": "color",
+              "label": "Golds",
+              "target": "Gold"
+            }
+          ]
+        },
+        {
+          "points": -10,
+          "condition": "if with Victra or Sevro.",
+          "raw": "−10: if with [Victra](#victra) or [Sevro](#sevro).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Victra",
+              "target": "victra"
+            },
+            {
+              "kind": "character",
+              "label": "Sevro",
+              "target": "sevro"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "arlus",
+      "name": "Arlus",
+      "color": "Red",
+      "role": "laborer",
+      "core_value": 10,
+      "deploy": {
+        "text": "Each neighboring player reveals a random card from their hand. If it is Gold, banish that card. If it is Red, banish Arlus.",
+        "raw": "Each neighboring player [reveals](#reveal) a random card from their hand. If it is [Gold](#golds), [banish](#banish) that card. If it is [Red](#reds), banish Arlus.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          },
+          {
+            "kind": "color",
+            "label": "Red",
+            "target": "Red"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 25,
+          "condition": "if with no Golds.",
+          "raw": "25: if with no [Golds](#golds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Golds",
+              "target": "Gold"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "artificer",
+      "name": "Artificer",
+      "color": "Orange",
+      "role": "engineer",
+      "core_value": 10,
+      "deploy": {
+        "text": "You may gain a Gold or any other Orange from this location. If you do, end your turn.",
+        "raw": "You may gain a [Gold](#golds) or any other [Orange](#oranges) from this location. If you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          },
+          {
+            "kind": "color",
+            "label": "Orange",
+            "target": "Orange"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as having the same name as any specific character.",
+        "raw": "You may treat this card as having the same name as any specific character.",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 20,
+          "condition": "if with both another Orange and a Gold.",
+          "raw": "20: if with both another [Orange](#oranges) and a [Gold](#golds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Orange",
+              "target": "Orange"
+            },
+            {
+              "kind": "color",
+              "label": "Gold",
+              "target": "Gold"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "artisan-chef",
+      "name": "Artisan Chef",
+      "color": "Brown",
+      "role": "assistant",
+      "core_value": 10,
+      "deploy": {
+        "text": "If deployed directly on top of a Gold, move that Gold to the top of another location and place 1 Infuence on the Institute.",
+        "raw": "If [deployed](#deploy) directly on top of a [Gold](#golds), move that Gold to the top of another location and place 1 Infuence on the Institute.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "Ignore any lost points from Golds.",
+        "raw": "Ignore any lost points from [Golds](#golds).",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Golds",
+            "target": "Gold"
+          }
+        ]
+      },
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Gold.",
+          "raw": "5: for each [Gold](#golds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gold",
+              "target": "Gold"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "ash-lord",
+      "name": "Ash Lord",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 25,
+      "deploy": {
+        "text": "Banish all Blues from this location. If this banishes 2 or more Blues, regain Ash Lord.",
+        "raw": "[Banish](#banish) all [Blues](#blues) from this location. If this banishes 2 or more Blues, regain Ash Lord.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Blues",
+            "target": "Blue"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Blue.",
+          "raw": "5: for each [Blue](#blues).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Blue",
+              "target": "Blue"
+            }
+          ]
+        },
+        {
+          "points": 5,
+          "condition": "for each banished Blue.",
+          "raw": "5: for each banished [Blue](#blues).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Blue",
+              "target": "Blue"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "assassin",
+      "name": "Assassin",
+      "color": "Brown",
+      "role": "assistant",
+      "core_value": 5,
+      "deploy": {
+        "text": "Banish the card directly under this one. If it's a Gold, place 1 Influence on the Institute.",
+        "raw": "[Banish](#banish) the card directly under this one. If it's a [Gold](#golds), place 1 Influence on the Institute.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "for each Obsidian.",
+          "raw": "10: for each [Obsidian](#obsidians).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Obsidian",
+              "target": "Obsidian"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "auctioneer",
+      "name": "Auctioneer",
+      "color": "Copper",
+      "role": "bureaucrat",
+      "core_value": 12,
+      "deploy": {
+        "text": "Choose an opponent. That opponent chooses one: Gain 1 Helium, advance on the Fleet Track, or place 1 Influence on the Institute. You gain both other options.",
+        "raw": "Choose an opponent. That opponent chooses one: Gain 1 Helium, advance on the Fleet Track, or place 1 Influence on the Institute. You gain both other options.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": {
+        "text": "Gain 1 Helium, advance once on the Fleet Track, or place 1 Influence on the Institute.",
+        "raw": "Gain 1 Helium, advance once on the Fleet Track, or place 1 Influence on the Institute.",
+        "refs": []
+      },
+      "bonuses": [],
+      "art_url": null
+    },
+    {
+      "id": "banker",
+      "name": "Banker",
+      "color": "Silver",
+      "role": "financier",
+      "core_value": 10,
+      "deploy": {
+        "text": "You may pay 3 Helium to gain any card from this location. If you do, banish Banker.",
+        "raw": "You may pay 3 Helium to gain any card from this location. If you do, [banish](#banish) Banker.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may pay 3 Helium to gain the top card of any location.",
+        "raw": "You may pay 3 Helium to gain the top card of any location.",
+        "refs": []
+      },
+      "bonuses": [],
+      "art_url": null
+    },
+    {
+      "id": "bondilus",
+      "name": "Bondilus",
+      "color": "Copper",
+      "role": "bureaucrat",
+      "core_value": 20,
+      "deploy": {
+        "text": "If deployed on Mars, banish 1 non-Gold from this location.",
+        "raw": "If [deployed](#deploy) on Mars, [banish](#banish) 1 non-Gold from this location.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "if you have the Sovereign token.",
+          "raw": "5: if you have the Sovereign token.",
+          "refs": []
+        },
+        {
+          "points": 5,
+          "condition": "if with a Gold.",
+          "raw": "5: if with a [Gold](#golds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gold",
+              "target": "Gold"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "boneriders",
+      "name": "Boneriders",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 15,
+      "deploy": {
+        "text": "Gain the Sovereign token.",
+        "raw": "Gain the Sovereign token.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if with The Jackal or a Gray.",
+          "raw": "15: if with [The Jackal](#the-jackal) or a [Gray](#grays).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "The Jackal",
+              "target": "jackal"
+            },
+            {
+              "kind": "color",
+              "label": "Gray",
+              "target": "Gray"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "bridge",
+      "name": "Bridge",
+      "color": "Gray",
+      "role": "security",
+      "core_value": 15,
+      "deploy": {
+        "text": "Move a Pink or Violet from any location to directly under this card. You may gain that card; if you do, end your turn.",
+        "raw": "Move a [Pink](#pinks) or [Violet](#violets) from any location to directly under this card. You may gain that card; if you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Pink",
+            "target": "Pink"
+          },
+          {
+            "kind": "color",
+            "label": "Violet",
+            "target": "Violet"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "raw": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Pink & Violet on all locations.",
+          "raw": "5: for each [Pink](#pinks) & [Violet](#violets) on all locations.",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Pink",
+              "target": "Pink"
+            },
+            {
+              "kind": "color",
+              "label": "Violet",
+              "target": "Violet"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "calliope",
+      "name": "Calliope",
+      "color": "Pink",
+      "role": "companion",
+      "core_value": 15,
+      "deploy": {
+        "text": "Reveal the top card of the deck, then deploy it face-up on another location.",
+        "raw": "[Reveal](#reveal) the top card of the deck, then [deploy](#deploy) it face-up on another location.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 20,
+          "condition": "if with The Jackal.",
+          "raw": "20: if with [The Jackal](#the-jackal).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "The Jackal",
+              "target": "jackal"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "cassius",
+      "name": "Cassius",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 25,
+      "deploy": {
+        "text": "Gain the card directly under this one. Banish Cassius unless that card is a Gold.",
+        "raw": "Gain the card directly under this one. [Banish](#banish) Cassius unless that card is a [Gold](#golds).",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 40,
+          "condition": "if with both Mustang & Darrow.",
+          "raw": "40: if with both [Mustang](#mustang) & [Darrow](#darrow).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Mustang",
+              "target": "mustang"
+            },
+            {
+              "kind": "character",
+              "label": "Darrow",
+              "target": "darrow"
+            }
+          ]
+        },
+        {
+          "points": -20,
+          "condition": "if with Darrow (but not Mustang).",
+          "raw": "−20: if with [Darrow](#darrow) (but not [Mustang](#mustang)).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Darrow",
+              "target": "darrow"
+            },
+            {
+              "kind": "character",
+              "label": "Mustang",
+              "target": "mustang"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "ceo",
+      "name": "Ceo",
+      "color": "Silver",
+      "role": "financier",
+      "core_value": 12,
+      "deploy": {
+        "text": "You may regress once on the Fleet Track. If you do, gain 2 Helium.",
+        "raw": "You may regress once on the Fleet Track. If you do, gain 2 Helium.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 18,
+          "condition": "if you have at least 5 Helium.",
+          "raw": "18: if you have at least 5 Helium.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "codebreaker",
+      "name": "Codebreaker",
+      "color": "Green",
+      "role": "programmer",
+      "core_value": 8,
+      "deploy": {
+        "text": "Reveal the bottom card of the deck. If it's a Gold or Silver, leave it there; otherwise gain it. Banish Codebreaker unless you deployed it on top of a Gold or Silver.",
+        "raw": "[Reveal](#reveal) the bottom card of the deck. If it's a [Gold](#golds) or [Silver](#silvers), leave it there; otherwise gain it. [Banish](#banish) Codebreaker unless you [deployed](#deploy) it on top of a [Gold](#golds) or [Silver](#silvers).",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          },
+          {
+            "kind": "color",
+            "label": "Silver",
+            "target": "Silver"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 22,
+          "condition": "if the first letter of the names of your cards are all different.",
+          "raw": "22: if the first letter of the names of your cards are all different.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "colonel-valentin",
+      "name": "Colonel Valentin",
+      "color": "Gray",
+      "role": "security",
+      "core_value": 10,
+      "deploy": {
+        "text": "Move a Gold from any location to directly under this card. You may gain that card; if you do, end your turn.",
+        "raw": "Move a [Gold](#golds) from any location to directly under this card. You may gain that card; if you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "raw": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Gold on all locations.",
+          "raw": "5: for each [Gold](#golds) on all locations.",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gold",
+              "target": "Gold"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "conversationalist",
+      "name": "Conversationalist",
+      "color": "Pink",
+      "role": "companion",
+      "core_value": 15,
+      "deploy": {
+        "text": "Move the top card from another location to under this card. If it's a White, gain it.",
+        "raw": "Move the top card from another location to under this card. If it's a [White](#whites), gain it.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "White",
+            "target": "White"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if with a White.",
+          "raw": "15: if with a [White](#whites).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "White",
+              "target": "White"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "cyther",
+      "name": "Cyther",
+      "color": "Orange",
+      "role": "engineer",
+      "core_value": 14,
+      "deploy": {
+        "text": "You may gain a Blue from this location. If you do, end your turn.",
+        "raw": "You may gain a [Blue](#blues) from this location. If you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Blue",
+            "target": "Blue"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as having the same name as any specific character.",
+        "raw": "You may treat this card as having the same name as any specific character.",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 16,
+          "condition": "if with a Blue.",
+          "raw": "16: if with a [Blue](#blues).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Blue",
+              "target": "Blue"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "dancer",
+      "name": "Dancer",
+      "color": "Red",
+      "role": "laborer",
+      "core_value": 8,
+      "deploy": {
+        "text": "Gain 1 Helium. If you have 2 or more other Reds, reveal them to gain 2 more Helium.",
+        "raw": "Gain 1 Helium. If you have 2 or more other [Reds](#reds), [reveal](#reveal) them to gain 2 more Helium.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Reds",
+            "target": "Red"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 11,
+          "condition": "if with no Grays.",
+          "raw": "11: if with no [Grays](#grays).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Grays",
+              "target": "Gray"
+            }
+          ]
+        },
+        {
+          "points": 11,
+          "condition": "if with no Golds.",
+          "raw": "11: if with no [Golds](#golds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Golds",
+              "target": "Gold"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "danto",
+      "name": "Danto",
+      "color": "Gray",
+      "role": "security",
+      "core_value": 10,
+      "deploy": {
+        "text": "Move a Copper or White from any location to directly under this card. You may gain that card; if you do, end your turn.",
+        "raw": "Move a [Copper](#coppers) or [White](#whites) from any location to directly under this card. You may gain that card; if you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Copper",
+            "target": "Copper"
+          },
+          {
+            "kind": "color",
+            "label": "White",
+            "target": "White"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "raw": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Copper & White on all locations.",
+          "raw": "5: for each [Copper](#coppers) & [White](#whites) on all locations.",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Copper",
+              "target": "Copper"
+            },
+            {
+              "kind": "color",
+              "label": "White",
+              "target": "White"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "darrow",
+      "name": "Darrow",
+      "color": "Red",
+      "role": "laborer",
+      "core_value": 10,
+      "deploy": {
+        "text": "Gain any other non-Gold from this location. Banish Darrow unless you deployed him on a Gold.",
+        "raw": "Gain any other non-Gold from this location. [Banish](#banish) Darrow unless you [deployed](#deploy) him on a [Gold](#golds).",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 30,
+          "condition": "if you have 7 or more cards (including Darrow).",
+          "raw": "30: if you have 7 or more cards (including Darrow).",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "dataport-specialist",
+      "name": "Dataport Specialist",
+      "color": "Green",
+      "role": "programmer",
+      "core_value": 9,
+      "deploy": {
+        "text": "If deployed on Jupiter, reveal the top 2 cards of the deck and place them under this card in any order.",
+        "raw": "If [deployed](#deploy) on Jupiter, [reveal](#reveal) the top 2 cards of the deck and place them under this card in any order.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 26,
+          "condition": "if with a Blue.",
+          "raw": "26: if with a [Blue](#blues).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Blue",
+              "target": "Blue"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "deanna",
+      "name": "Deanna",
+      "color": "Red",
+      "role": "laborer",
+      "core_value": 9,
+      "deploy": {
+        "text": "Gain 1 Helium.",
+        "raw": "Gain 1 Helium.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 26,
+          "condition": "if with another Red.",
+          "raw": "26: if with another [Red](#reds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Red",
+              "target": "Red"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "developer",
+      "name": "Developer",
+      "color": "Green",
+      "role": "programmer",
+      "core_value": 9,
+      "deploy": {
+        "text": "You may gain any other card from this location. If you do, end your turn.",
+        "raw": "You may gain any other card from this location. If you do, end your turn.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": null,
+          "condition": "Gain the core value of the top card of any location.",
+          "raw": "?: Gain the core value of the top card of any location.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "diplomat",
+      "name": "Diplomat",
+      "color": "Copper",
+      "role": "bureaucrat",
+      "core_value": 16,
+      "deploy": {
+        "text": "You and an opponent of your choice may place 1 Influence on the Institute.",
+        "raw": "You and an opponent of your choice may place 1 Influence on the Institute.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 19,
+          "condition": "if you and any opponent have the exact same amount of Influence on the Institute.",
+          "raw": "19: if you and any opponent have the exact same amount of Influence on the Institute.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "dr.-virany",
+      "name": "Dr. Virany",
+      "color": "Yellow",
+      "role": "doctor",
+      "core_value": 9,
+      "deploy": {
+        "text": "If deployed on Mars, reveal the top 2 cards of the deck and place them under this card in any order.",
+        "raw": "If [deployed](#deploy) on Mars, [reveal](#reveal) the top 2 cards of the deck and place them under this card in any order.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may gain any number of these banished cards: Victra, Sevro, Fitchner, and any Reds.",
+        "raw": "You may gain any number of these [banished](#banish) cards: [Victra](#victra), [Sevro](#sevro), [Fitchner](#fitchner), and any [Reds](#reds).",
+        "refs": [
+          {
+            "kind": "character",
+            "label": "Victra",
+            "target": "victra"
+          },
+          {
+            "kind": "character",
+            "label": "Sevro",
+            "target": "sevro"
+          },
+          {
+            "kind": "character",
+            "label": "Fitchner",
+            "target": "fitchner"
+          },
+          {
+            "kind": "color",
+            "label": "Reds",
+            "target": "Red"
+          }
+        ]
+      },
+      "bonuses": [],
+      "art_url": null
+    },
+    {
+      "id": "eo",
+      "name": "Eo",
+      "color": "Red",
+      "role": "laborer",
+      "core_value": 10,
+      "deploy": {
+        "text": "Each opponent must reveal a Red. If they can't, they lose 1 Helium.",
+        "raw": "Each opponent must [reveal](#reveal) a [Red](#reds). If they can't, they lose 1 Helium.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Red",
+            "target": "Red"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "for each other Red.",
+          "raw": "10: for each other [Red](#reds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Red",
+              "target": "Red"
+            }
+          ]
+        },
+        {
+          "points": -10,
+          "condition": "if with a Gray (except Bridge).",
+          "raw": "−10: if with a [Gray](#grays) (except [Bridge](#bridge)).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gray",
+              "target": "Gray"
+            },
+            {
+              "kind": "character",
+              "label": "Bridge",
+              "target": "bridge"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "evey",
+      "name": "Evey",
+      "color": "Pink",
+      "role": "companion",
+      "core_value": 15,
+      "deploy": {
+        "text": "Banish Evey and all cards at this location. For each Gold banished, place 1 Influence token on the Institute (max 3).",
+        "raw": "[Banish](#banish) Evey and all cards at this location. For each [Gold](#golds) banished, place 1 Influence token on the Institute (max 3).",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if with Darrow.",
+          "raw": "15: if with [Darrow](#darrow).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Darrow",
+              "target": "darrow"
+            }
+          ]
+        },
+        {
+          "points": -15,
+          "condition": "if with Mickey.",
+          "raw": "−15: if with [Mickey](#mickey-the-carver).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Mickey",
+              "target": "mickey-the-carver"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "firewall-expert",
+      "name": "Firewall expert",
+      "color": "Green",
+      "role": "programmer",
+      "core_value": 13,
+      "deploy": {
+        "text": "Look at the top 3 cards of the deck. Place 1 of them face down at the top of each location. These cards are considered colorless while they are face down.",
+        "raw": "Look at the top 3 cards of the deck. Place 1 of them face down at the top of each location. These cards are considered colorless while they are face down.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 22,
+          "condition": "if there is at least 1 location with no cards or where the top card is face down.",
+          "raw": "22: if there is at least 1 location with no cards or where the top card is face down.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "fitchner",
+      "name": "Fitchner",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 25,
+      "deploy": {
+        "text": "If deployed to the Institute, place 1 Influence there.",
+        "raw": "If [deployed](#deploy) to the Institute, place 1 Influence there.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "if with a Red.",
+          "raw": "10: if with a [Red](#reds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Red",
+              "target": "Red"
+            }
+          ]
+        },
+        {
+          "points": 10,
+          "condition": "if with Sevro.",
+          "raw": "10: if with [Sevro](#sevro).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Sevro",
+              "target": "sevro"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "garden-trained-rose",
+      "name": "Garden-trained Rose",
+      "color": "Pink",
+      "role": "companion",
+      "core_value": 16,
+      "deploy": {
+        "text": "Move the card directly under this one to the top of another location. If it's a Silver, gain 1 Helium.",
+        "raw": "Move the card directly under this one to the top of another location. If it's a [Silver](#silvers), gain 1 Helium.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Silver",
+            "target": "Silver"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 14,
+          "condition": "if with a Silver.",
+          "raw": "14: if with a [Silver](#silvers).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Silver",
+              "target": "Silver"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "gardener",
+      "name": "Gardener",
+      "color": "Brown",
+      "role": "assistant",
+      "core_value": 10,
+      "deploy": {
+        "text": "If deployed directly on top of a Violet or Pink, move that card to the top of another location and gain 1 Helium.",
+        "raw": "If [deployed](#deploy) directly on top of a [Violet](#violets) or [Pink](#pinks), move that card to the top of another location and gain 1 Helium.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Violet",
+            "target": "Violet"
+          },
+          {
+            "kind": "color",
+            "label": "Pink",
+            "target": "Pink"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Violet & Pink.",
+          "raw": "5: for each [Violet](#violets) & [Pink](#pinks).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Violet",
+              "target": "Violet"
+            },
+            {
+              "kind": "color",
+              "label": "Pink",
+              "target": "Pink"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "gravboot-cobbler",
+      "name": "Gravboot Cobbler",
+      "color": "Orange",
+      "role": "engineer",
+      "core_value": 16,
+      "deploy": {
+        "text": "You may gain a Gold or Gray from this location. If you do, end your turn.",
+        "raw": "You may gain a [Gold](#golds) or [Gray](#grays) from this location. If you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          },
+          {
+            "kind": "color",
+            "label": "Gray",
+            "target": "Gray"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as having the same name as any specific character.",
+        "raw": "You may treat this card as having the same name as any specific character.",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 14,
+          "condition": "if with a Gold or Gray.",
+          "raw": "14: if with a [Gold](#golds) or [Gray](#grays).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gold",
+              "target": "Gold"
+            },
+            {
+              "kind": "color",
+              "label": "Gray",
+              "target": "Gray"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "group-counselor",
+      "name": "Group Counselor",
+      "color": "Yellow",
+      "role": "doctor",
+      "core_value": 35,
+      "deploy": {
+        "text": "Choose up to 3 banished cards and place each of them either on the top or bottom of the deck.",
+        "raw": "Choose up to 3 [banished](#banish) cards and place each of them either on the top or bottom of the deck.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": -1,
+          "condition": "per banished card.",
+          "raw": "−1: per banished card.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "hacker",
+      "name": "Hacker",
+      "color": "Green",
+      "role": "programmer",
+      "core_value": 15,
+      "deploy": {
+        "text": "Reveal the top card of the deck. Either banish it or place (not deploy) it to the top of another location.",
+        "raw": "[Reveal](#reveal) the top card of the deck. Either [banish](#banish) it or place (not deploy) it to the top of another location.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": {
+        "text": "Reveal the top card of the deck. Gain points equal to that card's core value.",
+        "raw": "Reveal the top card of the deck. Gain points equal to that card's core value.",
+        "refs": []
+      },
+      "bonuses": [],
+      "art_url": null
+    },
+    {
+      "id": "harmony",
+      "name": "Harmony",
+      "color": "Red",
+      "role": "laborer",
+      "core_value": 7,
+      "deploy": {
+        "text": "An opponent of your choice loses 1 Helium.",
+        "raw": "An opponent of your choice loses 1 Helium.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 33,
+          "condition": "if with only Reds, Pinks, Browns, and/or Obsidians.",
+          "raw": "33: if with only [Reds](#reds), [Pinks](#pinks), [Browns](#browns), and/or [Obsidians](#obsidians).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Reds",
+              "target": "Red"
+            },
+            {
+              "kind": "color",
+              "label": "Pinks",
+              "target": "Pink"
+            },
+            {
+              "kind": "color",
+              "label": "Browns",
+              "target": "Brown"
+            },
+            {
+              "kind": "color",
+              "label": "Obsidians",
+              "target": "Obsidian"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "helga",
+      "name": "Helga",
+      "color": "Obsidian",
+      "role": "assassin",
+      "core_value": 14,
+      "deploy": {
+        "text": "Banish the card directly under this one. If it was the only other card on this location, gain 1 Helium.",
+        "raw": "[Banish](#banish) the card directly under this one. If it was the only other card on this location, gain 1 Helium.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 16,
+          "condition": "if with Pax au Telemanus or The Pax.",
+          "raw": "16: if with [Pax au Telemanus](#pax-au-telemanus) or [The Pax](#the-pax).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Pax au Telemanus",
+              "target": "pax-au-telemanus"
+            },
+            {
+              "kind": "character",
+              "label": "The Pax",
+              "target": "pax"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "holiday",
+      "name": "Holiday",
+      "color": "Gray",
+      "role": "security",
+      "core_value": 15,
+      "deploy": {
+        "text": "Move an Orange or Blue from any location to directly under this card. You may gain that card; if you do, end your turn.",
+        "raw": "Move an [Orange](#oranges) or [Blue](#blues) from any location to directly under this card. You may gain that card; if you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Orange",
+            "target": "Orange"
+          },
+          {
+            "kind": "color",
+            "label": "Blue",
+            "target": "Blue"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "raw": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Orange & Blue on all locations.",
+          "raw": "5: for each [Orange](#oranges) & [Blue](#blues) on all locations.",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Orange",
+              "target": "Orange"
+            },
+            {
+              "kind": "color",
+              "label": "Blue",
+              "target": "Blue"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "holo-designer",
+      "name": "Holo Designer",
+      "color": "Green",
+      "role": "programmer",
+      "core_value": 7,
+      "deploy": {
+        "text": "If deployed on Luna, reveal the top 2 cards of the deck and place them under this card in any order.",
+        "raw": "If [deployed](#deploy) on Luna, [reveal](#reveal) the top 2 cards of the deck and place them under this card in any order.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 28,
+          "condition": "if with a Violet.",
+          "raw": "28: if with a [Violet](#violets).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Violet",
+              "target": "Violet"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "holo-host",
+      "name": "Holo Host",
+      "color": "Violet",
+      "role": "artist",
+      "core_value": 12,
+      "deploy": {
+        "text": "If you have more Influence on the Institute than the player to your right, give them the Holo Host, gain the top 2 cards of the deck, then end your turn.",
+        "raw": "If you have more Influence on the Institute than the player to your right, give them the Holo Host, gain the top 2 cards of the deck, then end your turn.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 18,
+          "condition": "if you have the most Influence on the Institute (or tied for the most).",
+          "raw": "18: if you have the most Influence on the Institute (or tied for the most).",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "howlers",
+      "name": "The Howlers",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 20,
+      "deploy": null,
+      "block": {
+        "text": "When an opponent tries to steal or banish your cards, reveal this to block them.",
+        "raw": "When an opponent tries to steal or [banish](#banish) your cards, [reveal](#reveal) this to [block](#block) them.",
+        "refs": []
+      },
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if with Sevro.",
+          "raw": "15: if with [Sevro](#sevro).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Sevro",
+              "target": "sevro"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "hypnotist",
+      "name": "Hypnotist",
+      "color": "Yellow",
+      "role": "doctor",
+      "core_value": 15,
+      "deploy": {
+        "text": "In clockwise order starting with you, each player selects a card from their hand, banishes it, and gains the top card of the deck.",
+        "raw": "In clockwise order starting with you, each player selects a card from their hand, [banishes](#banish) it, and gains the top card of the deck.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": {
+        "text": "Banish 1 other card from your hand and gain the top card of the deck.",
+        "raw": "Banish 1 other card from your hand and gain the top card of the deck.",
+        "refs": []
+      },
+      "bonuses": [],
+      "art_url": null
+    },
+    {
+      "id": "investor",
+      "name": "Investor",
+      "color": "Silver",
+      "role": "financier",
+      "core_value": 15,
+      "deploy": {
+        "text": "Choose a color other than Silver. Gain 1 Helium for each card of that color at this location.",
+        "raw": "Choose a color other than [Silver](#silvers). Gain 1 Helium for each card of that color at this location.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Silver",
+            "target": "Silver"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "Choose a color other than Silver and gain 1 Helium for each card of that color on Mars.",
+        "raw": "Choose a color other than [Silver](#silvers) and gain 1 Helium for each card of that color on Mars.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Silver",
+            "target": "Silver"
+          }
+        ]
+      },
+      "bonuses": [],
+      "art_url": null
+    },
+    {
+      "id": "invictus",
+      "name": "Invictus",
+      "color": "Blue",
+      "role": "pilot",
+      "core_value": 19,
+      "deploy": {
+        "text": "If deployed on Mars, advance once on the Fleet Track.",
+        "raw": "If [deployed](#deploy) on Mars, advance once on the Fleet Track.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 16,
+          "condition": "if you are the most advanced on the Fleet Track (or tied for the most).",
+          "raw": "16: if you are the most advanced on the Fleet Track (or tied for the most).",
+          "refs": []
+        },
+        {
+          "points": -9,
+          "condition": "if an opponent is more advanced on the Fleet Track.",
+          "raw": "−9: if an opponent is more advanced on the Fleet Track.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "jackal",
+      "name": "The Jackal",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 10,
+      "deploy": {
+        "text": "Gain the Sovereign token.",
+        "raw": "Gain the Sovereign token.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 30,
+          "condition": "if you have the Sovereign Token.",
+          "raw": "30: if you have the Sovereign Token.",
+          "refs": []
+        },
+        {
+          "points": -30,
+          "condition": "if with Darrow or Octavia.",
+          "raw": "−30: if with [Darrow](#darrow) or [Octavia](#octavia).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Darrow",
+              "target": "darrow"
+            },
+            {
+              "kind": "character",
+              "label": "Octavia",
+              "target": "octavia"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "janitor",
+      "name": "Janitor",
+      "color": "Brown",
+      "role": "assistant",
+      "core_value": 10,
+      "deploy": {
+        "text": "If deployed directly on top of a Green, Yellow, or Blue, move that card to the top of another location and advance once on the Fleet Track.",
+        "raw": "If [deployed](#deploy) directly on top of a [Green](#greens), [Yellow](#yellows), or [Blue](#blues), move that card to the top of another location and advance once on the Fleet Track.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Green",
+            "target": "Green"
+          },
+          {
+            "kind": "color",
+            "label": "Yellow",
+            "target": "Yellow"
+          },
+          {
+            "kind": "color",
+            "label": "Blue",
+            "target": "Blue"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Green, Yellow, and Blue.",
+          "raw": "5: for each [Green](#greens), [Yellow](#yellows), and [Blue](#blues).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Green",
+              "target": "Green"
+            },
+            {
+              "kind": "color",
+              "label": "Yellow",
+              "target": "Yellow"
+            },
+            {
+              "kind": "color",
+              "label": "Blue",
+              "target": "Blue"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "jopho",
+      "name": "Jopho",
+      "color": "Obsidian",
+      "role": "assassin",
+      "core_value": 10,
+      "deploy": {
+        "text": "You may gain Alfrun or Nero from this location. If you do, regain Jopho and end your turn.",
+        "raw": "You may gain [Alfrun](#alfrun) or [Nero](#nero) from this location. If you do, regain Jopho and end your turn.",
+        "refs": [
+          {
+            "kind": "character",
+            "label": "Alfrun",
+            "target": "alfrun"
+          },
+          {
+            "kind": "character",
+            "label": "Nero",
+            "target": "nero"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "if with Alfrun.",
+          "raw": "10: if with [Alfrun](#alfrun).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Alfrun",
+              "target": "alfrun"
+            }
+          ]
+        },
+        {
+          "points": 10,
+          "condition": "if with Nero.",
+          "raw": "10: if with [Nero](#nero).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Nero",
+              "target": "nero"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "judge",
+      "name": "Judge",
+      "color": "White",
+      "role": "arbitrator",
+      "core_value": 10,
+      "deploy": null,
+      "block": {
+        "text": "When an opponent tries to steal or banish any of your cards, reveal this to block them.",
+        "raw": "When an opponent tries to steal or [banish](#banish) any of your cards, [reveal](#reveal) this to [block](#block) them.",
+        "refs": []
+      },
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 3,
+          "condition": "for each of your cards.",
+          "raw": "3: for each of your cards.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "justice",
+      "name": "Justice",
+      "color": "White",
+      "role": "arbitrator",
+      "core_value": 15,
+      "deploy": null,
+      "block": {
+        "text": "You may reveal this whenever an opponent tries to take the Sovereign token from you. If you do, banish this card to keep the token, then gain the top card of the deck.",
+        "raw": "You may [reveal](#reveal) this whenever an opponent tries to take the Sovereign token from you. If you do, [banish](#banish) this card to keep the token, then gain the top card of the deck.",
+        "refs": []
+      },
+      "endgame": {
+        "text": "If you have the Sovereign token, gain 1 card of your choice from Luna.",
+        "raw": "If you have the Sovereign token, gain 1 card of your choice from Luna.",
+        "refs": []
+      },
+      "bonuses": [],
+      "art_url": null
+    },
+    {
+      "id": "karnus",
+      "name": "Karnus",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 15,
+      "deploy": {
+        "text": "Banish the card directly under this one. If the banished card is Mustang, The Jackal, or Nero, you may also choose an opponent. If you do, they banish 1 of their cards.",
+        "raw": "[Banish](#banish) the card directly under this one. If the banished card is [Mustang](#mustang), [The Jackal](#the-jackal), or [Nero](#nero), you may also choose an opponent. If you do, they banish 1 of their cards.",
+        "refs": [
+          {
+            "kind": "character",
+            "label": "Mustang",
+            "target": "mustang"
+          },
+          {
+            "kind": "character",
+            "label": "The Jackal",
+            "target": "jackal"
+          },
+          {
+            "kind": "character",
+            "label": "Nero",
+            "target": "nero"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 30,
+          "condition": "if with Cassius.",
+          "raw": "30: if with [Cassius](#cassius).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Cassius",
+              "target": "cassius"
+            }
+          ]
+        },
+        {
+          "points": -15,
+          "condition": "if with Mustang, The Jackal, or Nero.",
+          "raw": "−15: if with [Mustang](#mustang), [The Jackal](#the-jackal), or [Nero](#nero).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Mustang",
+              "target": "mustang"
+            },
+            {
+              "kind": "character",
+              "label": "The Jackal",
+              "target": "jackal"
+            },
+            {
+              "kind": "character",
+              "label": "Nero",
+              "target": "nero"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "lawyer",
+      "name": "Lawyer",
+      "color": "Copper",
+      "role": "bureaucrat",
+      "core_value": 13,
+      "deploy": {
+        "text": "Place 1 Influence on the Institute.",
+        "raw": "Place 1 Influence on the Institute.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 12,
+          "condition": "if with a White (not the Judge).",
+          "raw": "12: if with a [White](#whites) (not the [Judge](#judge)).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "White",
+              "target": "White"
+            },
+            {
+              "kind": "character",
+              "label": "Judge",
+              "target": "judge"
+            }
+          ]
+        },
+        {
+          "points": 22,
+          "condition": "if with the Judge.",
+          "raw": "22: if with the [Judge](#judge).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Judge",
+              "target": "judge"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "loan-shark",
+      "name": "Loan Shark",
+      "color": "Silver",
+      "role": "financier",
+      "core_value": 13,
+      "deploy": {
+        "text": "Choose an opponent. They may give you 2 Helium to immediately take 1 turn out of order (but may not gain Loan Shark) before you finish your turn. Otherwise they must give you 1 Helium.",
+        "raw": "Choose an opponent. They may give you 2 Helium to immediately take 1 turn out of order (but may not gain Loan Shark) before you finish your turn. Otherwise they must give you 1 Helium.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 7,
+          "condition": "if you have at least 7 cards.",
+          "raw": "7: if you have at least 7 cards.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "lorn",
+      "name": "Lorn",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 20,
+      "deploy": {
+        "text": "If the card directly under this one is a Gold, banish that card.",
+        "raw": "If the card directly under this one is a [Gold](#golds), [banish](#banish) that card.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if with no other Golds.",
+          "raw": "15: if with no other [Golds](#golds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Golds",
+              "target": "Gold"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "lysander",
+      "name": "Lysander",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 10,
+      "deploy": {
+        "text": "Gain the top card of the deck. Banish Lysander unless you deployed him on Luna.",
+        "raw": "Gain the top card of the deck. [Banish](#banish) Lysander unless you [deployed](#deploy) him on Luna.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 20,
+          "condition": "if you have the Sovereign token, Octavia, or Cassius.",
+          "raw": "20: if you have the Sovereign token, [Octavia](#octavia), or [Cassius](#cassius).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Octavia",
+              "target": "octavia"
+            },
+            {
+              "kind": "character",
+              "label": "Cassius",
+              "target": "cassius"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "magistrate",
+      "name": "Magistrate",
+      "color": "White",
+      "role": "arbitrator",
+      "core_value": 20,
+      "deploy": {
+        "text": "If you have the Sovereign token, gain 1 Helium.",
+        "raw": "If you have the Sovereign token, gain 1 Helium.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if you have at least 3 Helium, 3 Influence on the Institute, and at least level 3 on the Fleet Track.",
+          "raw": "15: if you have at least 3 Helium, 3 Influence on the Institute, and at least level 3 on the Fleet Track.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "martyr",
+      "name": "Martyr",
+      "color": "White",
+      "role": "arbitrator",
+      "core_value": 15,
+      "deploy": null,
+      "block": {
+        "text": "If an opponent tries to take the Sovereign token from you, you may block them by revealing and banishing this card, then gain the top card of the deck.",
+        "raw": "If an opponent tries to take the Sovereign token from you, you may [block](#block) them by [revealing](#reveal) and [banishing](#banish) this card, then gain the top card of the deck.",
+        "refs": []
+      },
+      "endgame": {
+        "text": "If you have the Sovereign token, gain 1 card of your choice from Mars.",
+        "raw": "If you have the Sovereign token, gain 1 card of your choice from Mars.",
+        "refs": []
+      },
+      "bonuses": [],
+      "art_url": null
+    },
+    {
+      "id": "masseuse",
+      "name": "Masseuse",
+      "color": "Pink",
+      "role": "companion",
+      "core_value": 14,
+      "deploy": {
+        "text": "Move the top card of another location to the top of a different location. Gain the original location bonus for that card.",
+        "raw": "Move the top card of another location to the top of a different location. Gain the original location bonus for that card.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 16,
+          "condition": "if with a Copper.",
+          "raw": "16: if with a [Copper](#coppers).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Copper",
+              "target": "Copper"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "matteo",
+      "name": "Matteo",
+      "color": "Pink",
+      "role": "companion",
+      "core_value": 13,
+      "deploy": {
+        "text": "Move any other card from this location to the top of another location. If it's a Pink, place 1 Influence token on the Institute.",
+        "raw": "Move any other card from this location to the top of another location. If it's a [Pink](#pinks), place 1 Influence token on the Institute.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Pink",
+            "target": "Pink"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 17,
+          "condition": "if with a Pink or Quicksilver.",
+          "raw": "17: if with a [Pink](#pinks) or [Quicksilver](#quicksilver).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Pink",
+              "target": "Pink"
+            },
+            {
+              "kind": "character",
+              "label": "Quicksilver",
+              "target": "quicksilver"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "mess-hall-cook",
+      "name": "Mess Hall Cook",
+      "color": "Brown",
+      "role": "assistant",
+      "core_value": 10,
+      "deploy": {
+        "text": "If deployed directly on top of a Gray or Orange, move that card to the top of another location and advance once on the Fleet Track.",
+        "raw": "If [deployed](#deploy) directly on top of a [Gray](#grays) or [Orange](#oranges), move that card to the top of another location and advance once on the Fleet Track.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gray",
+            "target": "Gray"
+          },
+          {
+            "kind": "color",
+            "label": "Orange",
+            "target": "Orange"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Gray and Orange.",
+          "raw": "5: for each [Gray](#grays) and [Orange](#oranges).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gray",
+              "target": "Gray"
+            },
+            {
+              "kind": "color",
+              "label": "Orange",
+              "target": "Orange"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "mickey-the-carver",
+      "name": "Mickey The Carver",
+      "color": "Violet",
+      "role": "artist",
+      "core_value": 15,
+      "deploy": {
+        "text": "You may banish a Red from your hand. If you do, reveal cards from the deck until you find a Gold. Gain it and place the revealed cards at the bottom of the deck in any order.",
+        "raw": "You may [banish](#banish) a [Red](#reds) from your hand. If you do, [reveal](#reveal) cards from the deck until you find a [Gold](#golds). Gain it and place the revealed cards at the bottom of the deck in any order.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Red",
+            "target": "Red"
+          },
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "if there is at least 1 banished Red.",
+          "raw": "10: if there is at least 1 banished [Red](#reds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Red",
+              "target": "Red"
+            }
+          ]
+        },
+        {
+          "points": 10,
+          "condition": "if with a Gold.",
+          "raw": "10: if with a [Gold](#golds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gold",
+              "target": "Gold"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "modjob",
+      "name": "Modjob",
+      "color": "Brown",
+      "role": "assistant",
+      "core_value": 10,
+      "deploy": {
+        "text": "If deployed directly on top of a Red or Brown, deploy that card to the top of another location.",
+        "raw": "If [deployed](#deploy) directly on top of a [Red](#reds) or [Brown](#browns), deploy that card to the top of another location.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Red",
+            "target": "Red"
+          },
+          {
+            "kind": "color",
+            "label": "Brown",
+            "target": "Brown"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Red and Brown (including Modjob).",
+          "raw": "5: for each [Red](#reds) and [Brown](#browns) (including Modjob).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Red",
+              "target": "Red"
+            },
+            {
+              "kind": "color",
+              "label": "Brown",
+              "target": "Brown"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "morning-star",
+      "name": "Morning Star",
+      "color": "Blue",
+      "role": "pilot",
+      "core_value": 35,
+      "deploy": {
+        "text": "If deployed on Jupiter, advance once on the Fleet Track.",
+        "raw": "If [deployed](#deploy) on Jupiter, advance once on the Fleet Track.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": -15,
+          "condition": "unless with Orion, Virga, or Pelus.",
+          "raw": "−15: unless with [Orion](#orion), [Virga](#virga), or [Pelus](#pelus).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Orion",
+              "target": "orion"
+            },
+            {
+              "kind": "character",
+              "label": "Virga",
+              "target": "virga"
+            },
+            {
+              "kind": "character",
+              "label": "Pelus",
+              "target": "pelus"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "musician",
+      "name": "Musician",
+      "color": "Violet",
+      "role": "artist",
+      "core_value": 8,
+      "deploy": {
+        "text": "Move a card with an even core value from this location to the top of another location.",
+        "raw": "Move a card with an even core value from this location to the top of another location.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 32,
+          "condition": "if the core value of each of your cards is an even number.",
+          "raw": "32: if the core value of each of your cards is an even number.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "mustang",
+      "name": "Mustang",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 20,
+      "deploy": {
+        "text": "Gain 1 banished card. If that card is not a Gold, banish Mustang.",
+        "raw": "Gain 1 [banished](#banish) card. If that card is not a [Gold](#golds), banish Mustang.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each different color.",
+          "raw": "5: for each different color.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "nanny",
+      "name": "Nanny",
+      "color": "Brown",
+      "role": "assistant",
+      "core_value": 10,
+      "deploy": {
+        "text": "If deployed directly on top of a Silver, White, or Copper, move that card to the top of another location and gain 1 Helium.",
+        "raw": "If [deployed](#deploy) directly on top of a [Silver](#silvers), [White](#whites), or [Copper](#coppers), move that card to the top of another location and gain 1 Helium.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Silver",
+            "target": "Silver"
+          },
+          {
+            "kind": "color",
+            "label": "White",
+            "target": "White"
+          },
+          {
+            "kind": "color",
+            "label": "Copper",
+            "target": "Copper"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Silver, White, and Copper.",
+          "raw": "5: for each [Silver](#silvers), [White](#whites), and [Copper](#coppers).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Silver",
+              "target": "Silver"
+            },
+            {
+              "kind": "color",
+              "label": "White",
+              "target": "White"
+            },
+            {
+              "kind": "color",
+              "label": "Copper",
+              "target": "Copper"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "nero",
+      "name": "Nero",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 25,
+      "deploy": {
+        "text": "Gain 1 Helium for each Red at this location.",
+        "raw": "Gain 1 Helium for each [Red](#reds) at this location.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Red",
+            "target": "Red"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "if you have the Sovereign token.",
+          "raw": "10: if you have the Sovereign token.",
+          "refs": []
+        },
+        {
+          "points": -5,
+          "condition": "each for Cassius, Karnus, and Octavia.",
+          "raw": "−5: each for [Cassius](#cassius), [Karnus](#karnus), and [Octavia](#octavia).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Cassius",
+              "target": "cassius"
+            },
+            {
+              "kind": "character",
+              "label": "Karnus",
+              "target": "karnus"
+            },
+            {
+              "kind": "character",
+              "label": "Octavia",
+              "target": "octavia"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "octavia",
+      "name": "Octavia",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 30,
+      "deploy": {
+        "text": "If you have the Sovereign token, gain the bottom card on Luna (if it's not this card); banish Octavia unless that card is a Gold.",
+        "raw": "If you have the Sovereign token, gain the bottom card on Luna (if it's not this card); [banish](#banish) Octavia unless that card is a [Gold](#golds).",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": -30,
+          "condition": "if you don't have either the Sovereign token or Lysander.",
+          "raw": "−30: if you don't have either the Sovereign token or [Lysander](#lysander).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Lysander",
+              "target": "lysander"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "online-gambler",
+      "name": "Online Gambler",
+      "color": "Green",
+      "role": "programmer",
+      "core_value": 7,
+      "deploy": {
+        "text": "Name 3 colors, then reveal the top card of the deck. If it matches a color you named, gain it and banish this card. Otherwise, banish the revealed card.",
+        "raw": "Name 3 colors, then [reveal](#reveal) the top card of the deck. If it matches a color you named, gain it and [banish](#banish) this card. Otherwise, banish the revealed card.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": {
+        "text": "Name 1 non-Gold color. Reveal 7 cards from the top of the deck and gain all cards of that color. Shuffle and return the other cards to the top of the deck.",
+        "raw": "Name 1 non-Gold color. Reveal 7 cards from the top of the deck and gain all cards of that color. Shuffle and return the other cards to the top of the deck.",
+        "refs": []
+      },
+      "bonuses": [],
+      "art_url": null
+    },
+    {
+      "id": "orator",
+      "name": "Orator",
+      "color": "White",
+      "role": "arbitrator",
+      "core_value": 19,
+      "deploy": {
+        "text": "If you have the Sovereign token, place 1 Influence on the Institute.",
+        "raw": "If you have the Sovereign token, place 1 Influence on the Institute.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 21,
+          "condition": "if you don't have the Sovereign token.",
+          "raw": "21: if you don't have the Sovereign token.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "orion",
+      "name": "Orion",
+      "color": "Blue",
+      "role": "pilot",
+      "core_value": 18,
+      "deploy": {
+        "text": "If this is deployed on Mars, Luna, or The Institute, deploy one other Blue from this location to Jupiter.",
+        "raw": "If this is [deployed](#deploy) on Mars, Luna, or The Institute, deploy one other [Blue](#blues) from this location to Jupiter.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Blue",
+            "target": "Blue"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "if with Pax au Telemanus or The Pax.",
+          "raw": "10: if with Pax au Telemanus or The Pax.",
+          "refs": []
+        },
+        {
+          "points": null,
+          "condition": "Gain points equal to your position on the Fleet Track (0−10).",
+          "raw": "?: Gain points equal to your position on the Fleet Track (0−10).",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "pathologist",
+      "name": "Pathologist",
+      "color": "Yellow",
+      "role": "doctor",
+      "core_value": 5,
+      "deploy": {
+        "text": "Banish the bottom card of this location (if it's not this card).",
+        "raw": "[Banish](#banish) the bottom card of this location (if it's not this card).",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "if there are 5–9 banished cards at the beginning of end-game scoring.",
+          "raw": "10: if there are 5–9 banished cards at the beginning of end-game scoring.",
+          "refs": []
+        },
+        {
+          "points": 25,
+          "condition": "if there are at least 10 banished cards at the beginning of end-game scoring.",
+          "raw": "25: if there are at least 10 banished cards at the beginning of end-game scoring.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "pax",
+      "name": "The Pax",
+      "color": "Blue",
+      "role": "pilot",
+      "core_value": 20,
+      "deploy": {
+        "text": "If deployed on Luna, advance once on the Fleet Track.",
+        "raw": "If [deployed](#deploy) on Luna, advance once on the Fleet Track.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if with Darrow, Sevro, Orion, Virga, or Pelus.",
+          "raw": "15: if with [Darrow](#darrow), [Sevro](#sevro), [Orion](#orion), [Virga](#virga), or [Pelus](#pelus).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Darrow",
+              "target": "darrow"
+            },
+            {
+              "kind": "character",
+              "label": "Sevro",
+              "target": "sevro"
+            },
+            {
+              "kind": "character",
+              "label": "Orion",
+              "target": "orion"
+            },
+            {
+              "kind": "character",
+              "label": "Virga",
+              "target": "virga"
+            },
+            {
+              "kind": "character",
+              "label": "Pelus",
+              "target": "pelus"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "pax-au-telemanus",
+      "name": "Pax au telemanus",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 15,
+      "deploy": null,
+      "block": {
+        "text": "When an opponent tries to steal or banish your cards, reveal this to block them.",
+        "raw": "When an opponent tries to steal or [banish](#banish) your cards, [reveal](#reveal) this to [block](#block) them.",
+        "refs": []
+      },
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 20,
+          "condition": "if with an Obsidian or Mustang.",
+          "raw": "20: if with an [Obsidian](#obsidians) or [Mustang](#mustang).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Obsidian",
+              "target": "Obsidian"
+            },
+            {
+              "kind": "character",
+              "label": "Mustang",
+              "target": "mustang"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "pelus",
+      "name": "Pelus",
+      "color": "Blue",
+      "role": "pilot",
+      "core_value": 5,
+      "deploy": {
+        "text": "Advance twice on the Fleet Track, then all other players advance once on the Fleet Track.",
+        "raw": "Advance twice on the Fleet Track, then all other players advance once on the Fleet Track.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 20,
+          "condition": "if your Fleet Track position is 5–7.",
+          "raw": "20: if your Fleet Track position is 5–7.",
+          "refs": []
+        },
+        {
+          "points": 35,
+          "condition": "if your Fleet Track position is 8–10.",
+          "raw": "35: if your Fleet Track position is 8–10.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "politician",
+      "name": "Politician",
+      "color": "Copper",
+      "role": "bureaucrat",
+      "core_value": 15,
+      "deploy": {
+        "text": "You may reveal 2 Golds from your hand. If you do, place 2 Influence on the Institute.",
+        "raw": "You may [reveal](#reveal) 2 [Golds](#golds) from your hand. If you do, place 2 Influence on the Institute.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Golds",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if you have the most Influence on the Institute (or tied for the most).",
+          "raw": "15: if you have the most Influence on the Institute (or tied for the most).",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "priestess",
+      "name": "Priestess",
+      "color": "White",
+      "role": "arbitrator",
+      "core_value": 20,
+      "deploy": {
+        "text": "If you have the Sovereign token, advance once on the Fleet Track.",
+        "raw": "If you have the Sovereign token, advance once on the Fleet Track.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 20,
+          "condition": "if with only cards having core values of at least 20 points.",
+          "raw": "20: if with only cards having core values of at least 20 points.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "psychologist",
+      "name": "Psychologist",
+      "color": "Yellow",
+      "role": "doctor",
+      "core_value": 20,
+      "deploy": {
+        "text": "You may place (not deploy) 1 or 2 banished cards on the top of one location.",
+        "raw": "You may place (not deploy) 1 or 2 [banished](#banish) cards on the top of one location.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": {
+        "text": "If you have the fewest cards in hand (ties count). Gain 1 random banished card.",
+        "raw": "If you have the fewest cards in hand (ties count). Gain 1 random banished card.",
+        "refs": []
+      },
+      "bonuses": [],
+      "art_url": null
+    },
+    {
+      "id": "pulse-armorer",
+      "name": "Pulse Armorer",
+      "color": "Orange",
+      "role": "engineer",
+      "core_value": 13,
+      "deploy": {
+        "text": "You may gain a Gray from this location. If you do, end your turn.",
+        "raw": "You may gain a [Gray](#grays) from this location. If you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gray",
+            "target": "Gray"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as having the same name as any specific character.",
+        "raw": "You may treat this card as having the same name as any specific character.",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 17,
+          "condition": "if with a Gray.",
+          "raw": "17: if with a [Gray](#grays).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gray",
+              "target": "Gray"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "pulse-fistengineer",
+      "name": "Pulse Fistengineer",
+      "color": "Orange",
+      "role": "engineer",
+      "core_value": 12,
+      "deploy": {
+        "text": "You may gain an Obsidian from this location. If you do, end your turn.",
+        "raw": "You may gain an [Obsidian](#obsidians) from this location. If you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Obsidian",
+            "target": "Obsidian"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as having the same name as any specific character.",
+        "raw": "You may treat this card as having the same name as any specific character.",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 18,
+          "condition": "if with an Obsidian.",
+          "raw": "18: if with an [Obsidian](#obsidians).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Obsidian",
+              "target": "Obsidian"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "quicksilver",
+      "name": "Quicksilver",
+      "color": "Silver",
+      "role": "financier",
+      "core_value": 40,
+      "deploy": {
+        "text": "Steal 1 Helium from the opponent with the most Helium (if tied, you choose which of those opponents).",
+        "raw": "Steal 1 Helium from the opponent with the most Helium (if tied, you choose which of those opponents).",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": -30,
+          "condition": "if any opponent has more Helium than you.",
+          "raw": "−30: if any opponent has more Helium than you.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "quietus",
+      "name": "Quietus",
+      "color": "Blue",
+      "role": "pilot",
+      "core_value": 14,
+      "deploy": {
+        "text": "If deployed on the Institute, advance once on the Fleet Track.",
+        "raw": "If [deployed](#deploy) on the Institute, advance once on the Fleet Track.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 16,
+          "condition": "if you have the most Influence on the Institute (or tied for the most).",
+          "raw": "16: if you have the most Influence on the Institute (or tied for the most).",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "ragnar",
+      "name": "Ragnar",
+      "color": "Obsidian",
+      "role": "assassin",
+      "core_value": 20,
+      "deploy": {
+        "text": "Banish the top card of another location. If it's a Gold or a Gray, place 1 Influence on the Institute.",
+        "raw": "[Banish](#banish) the top card of another location. If it's a [Gold](#golds) or a [Gray](#grays), place 1 Influence on the Institute.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          },
+          {
+            "kind": "color",
+            "label": "Gray",
+            "target": "Gray"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "if with an Orange.",
+          "raw": "10: if with an [Orange](#oranges).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Orange",
+              "target": "Orange"
+            }
+          ]
+        },
+        {
+          "points": 10,
+          "condition": "if with Sefi.",
+          "raw": "10: if with [Sefi](#sefi).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Sefi",
+              "target": "sefi"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "razor-designer",
+      "name": "Razor Designer",
+      "color": "Orange",
+      "role": "engineer",
+      "core_value": 17,
+      "deploy": {
+        "text": "You may gain a Gold from this location. If you do, end your turn.",
+        "raw": "You may gain a [Gold](#golds) from this location. If you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as having the same name as any specific character.",
+        "raw": "You may treat this card as having the same name as any specific character.",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 13,
+          "condition": "if with a Gold and no Obsidians.",
+          "raw": "13: if with a [Gold](#golds) and no [Obsidians](#obsidians).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gold",
+              "target": "Gold"
+            },
+            {
+              "kind": "color",
+              "label": "Obsidians",
+              "target": "Obsidian"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "reporter",
+      "name": "Reporter",
+      "color": "Violet",
+      "role": "artist",
+      "core_value": 6,
+      "deploy": {
+        "text": "If you have more Helium than the player to your right, give them the Reporter, gain the top 2 cards of the deck, then end your turn.",
+        "raw": "If you have more Helium than the player to your right, give them the Reporter, gain the top 2 cards of the deck, then end your turn.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 29,
+          "condition": "if you have the most Helium (or tied for the most).",
+          "raw": "29: if you have the most Helium (or tied for the most).",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "researcher",
+      "name": "Researcher",
+      "color": "Yellow",
+      "role": "doctor",
+      "core_value": 13,
+      "deploy": {
+        "text": "Place a random banished card at the bottom of this location.",
+        "raw": "Place a random [banished](#banish) card at the bottom of this location.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 17,
+          "condition": "if there are 4 or fewer banished cards at the beginning of end-game scoring.",
+          "raw": "17: if there are 4 or fewer banished cards at the beginning of end-game scoring.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "romulus",
+      "name": "Romulus",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 25,
+      "deploy": {
+        "text": "Gain 1 Blue from this location. Banish Romulus unless you deployed him directly on top of a Gold.",
+        "raw": "Gain 1 [Blue](#blues) from this location. [Banish](#banish) Romulus unless you [deployed](#deploy) him directly on top of a [Gold](#golds).",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Blue",
+            "target": "Blue"
+          },
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if you have the Sovereign Token.",
+          "raw": "15: if you have the Sovereign Token.",
+          "refs": []
+        },
+        {
+          "points": -25,
+          "condition": "if with Roque or Octavia or without a Blue.",
+          "raw": "−25: if with [Roque](#roque) or [Octavia](#octavia) or without a [Blue](#blues).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Roque",
+              "target": "roque"
+            },
+            {
+              "kind": "character",
+              "label": "Octavia",
+              "target": "octavia"
+            },
+            {
+              "kind": "color",
+              "label": "Blue",
+              "target": "Blue"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "roque",
+      "name": "Roque",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 20,
+      "deploy": {
+        "text": "Look at an opponent's hand, name a card, then randomly select a card from their hand. If you select the named card, banish it and banish Roque.",
+        "raw": "Look at an opponent's hand, name a card, then randomly select a card from their hand. If you select the named card, [banish](#banish) it and banish Roque.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Blue.",
+          "raw": "5: for each [Blue](#blues).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Blue",
+              "target": "Blue"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "seer",
+      "name": "Seer",
+      "color": "White",
+      "role": "arbitrator",
+      "core_value": 19,
+      "deploy": {
+        "text": "If you have the Sovereign token, reveal the top card of the deck and place (not deploy) it on another location.",
+        "raw": "If you have the Sovereign token, [reveal](#reveal) the top card of the deck and place (not deploy) it on another location.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 11,
+          "condition": "if you have the Sovereign token.",
+          "raw": "11: if you have the Sovereign token.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "sefi",
+      "name": "Sefi",
+      "color": "Obsidian",
+      "role": "assassin",
+      "core_value": 20,
+      "deploy": {
+        "text": "Gain another Obsidian from this location.",
+        "raw": "Gain another [Obsidian](#obsidians) from this location.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Obsidian",
+            "target": "Obsidian"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 20,
+          "condition": "if with Ragnar.",
+          "raw": "20: if with [Ragnar](#ragnar).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Ragnar",
+              "target": "ragnar"
+            }
+          ]
+        },
+        {
+          "points": -5,
+          "condition": "for each Gold.",
+          "raw": "−5: for each [Gold](#golds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gold",
+              "target": "Gold"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "sevro",
+      "name": "Sevro",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 15,
+      "deploy": {
+        "text": "Banish the card directly under this one. You may reveal The Howlers to instead gain that card.",
+        "raw": "[Banish](#banish) the card directly under this one. You may [reveal](#reveal) [The Howlers](#the-howlers) to instead gain that card.",
+        "refs": [
+          {
+            "kind": "character",
+            "label": "The Howlers",
+            "target": "howlers"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 20,
+          "condition": "if with Victra, The Howlers, or a Red.",
+          "raw": "20: if with [Victra](#victra), [The Howlers](#the-howlers), or a [Red](#reds).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Victra",
+              "target": "victra"
+            },
+            {
+              "kind": "character",
+              "label": "The Howlers",
+              "target": "howlers"
+            },
+            {
+              "kind": "color",
+              "label": "Red",
+              "target": "Red"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "sponsor",
+      "name": "Sponsor",
+      "color": "Silver",
+      "role": "financier",
+      "core_value": 20,
+      "deploy": {
+        "text": "You may pay 1 Helium to place 2 Influence on the Institute.",
+        "raw": "You may pay 1 Helium to place 2 Influence on the Institute.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 2,
+          "condition": "for each of your Influence tokens on the Institute.",
+          "raw": "2: for each of your Influence tokens on the Institute.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "stained",
+      "name": "Stained",
+      "color": "Obsidian",
+      "role": "assassin",
+      "core_value": 15,
+      "deploy": {
+        "text": "Banish any other card from this location. If it's an Obsidian, place 1 Influence on the Institute.",
+        "raw": "[Banish](#banish) any other card from this location. If it's an [Obsidian](#obsidians), place 1 Influence on the Institute.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Obsidian",
+            "target": "Obsidian"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if this is your only Obsidian.",
+          "raw": "15: if this is your only [Obsidian](#obsidians).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Obsidian",
+              "target": "Obsidian"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "stock-broker",
+      "name": "Stock broker",
+      "color": "Silver",
+      "role": "financier",
+      "core_value": 10,
+      "deploy": {
+        "text": "You may lose 1 Influence from the Institute. If you do, gain 2 Helium.",
+        "raw": "You may lose 1 Influence from the Institute. If you do, gain 2 Helium.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Helium (max 25 points).",
+          "raw": "5: for each Helium (max 25 points).",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "sun-hwa",
+      "name": "Sun-Hwa",
+      "color": "Gray",
+      "role": "security",
+      "core_value": 15,
+      "deploy": {
+        "text": "Move an Obsidian or Green from any location to directly under this card. You may gain that card; if you do, end your turn.",
+        "raw": "Move an [Obsidian](#obsidians) or [Green](#greens) from any location to directly under this card. You may gain that card; if you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Obsidian",
+            "target": "Obsidian"
+          },
+          {
+            "kind": "color",
+            "label": "Green",
+            "target": "Green"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "raw": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Obsidian & Green on all locations.",
+          "raw": "5: for each [Obsidian](#obsidians) & [Green](#greens) on all locations.",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Obsidian",
+              "target": "Obsidian"
+            },
+            {
+              "kind": "color",
+              "label": "Green",
+              "target": "Green"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "surgeon",
+      "name": "Surgeon",
+      "color": "Yellow",
+      "role": "doctor",
+      "core_value": 0,
+      "deploy": {
+        "text": "You may banish a non-Gold from your hand and gain a banished Gold.",
+        "raw": "You may [banish](#banish) a non-Gold from your hand and gain a banished [Gold](#golds).",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "Gain any 1 banished Gold.",
+        "raw": "Gain any 1 banished [Gold](#golds).",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Gold.",
+          "raw": "5: for each [Gold](#golds).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gold",
+              "target": "Gold"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "tactus",
+      "name": "Tactus",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 20,
+      "deploy": {
+        "text": "You may steal 1 card from an opponent (they choose the card). If you do, banish Tactus and end your turn.",
+        "raw": "You may [steal](#banish) 1 card from an opponent (they choose the card). If you do, [banish](#banish) Tactus and end your turn.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 20,
+          "condition": "if with Octavia, Darrow, or a Pink.",
+          "raw": "20: if with [Octavia](#octavia), [Darrow](#darrow), or a [Pink](#pinks).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Octavia",
+              "target": "octavia"
+            },
+            {
+              "kind": "character",
+              "label": "Darrow",
+              "target": "darrow"
+            },
+            {
+              "kind": "color",
+              "label": "Pink",
+              "target": "Pink"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "telemanuses",
+      "name": "The Telemanuses",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 20,
+      "deploy": {
+        "text": "Move all cards under this card from this location to the top of another location in the same order.",
+        "raw": "Move all cards under this card from this location to the top of another location in the same order.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if with Pax au Telemanus or The Pax.",
+          "raw": "15: if with [Pax au Telemanus](#pax-au-telemanus) or [The Pax](#the-pax).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Pax au Telemanus",
+              "target": "pax-au-telemanus"
+            },
+            {
+              "kind": "character",
+              "label": "The Pax",
+              "target": "pax"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "theodora",
+      "name": "Theodora",
+      "color": "Pink",
+      "role": "companion",
+      "core_value": 16,
+      "deploy": {
+        "text": "You may move the bottom card of this location on top of this card. If it's a Gold or Red, gain it, then end your turn.",
+        "raw": "You may move the bottom card of this location on top of this card. If it's a [Gold](#golds) or [Red](#reds), gain it, then end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          },
+          {
+            "kind": "color",
+            "label": "Red",
+            "target": "Red"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 14,
+          "condition": "if with a Gold or Red (but not both).",
+          "raw": "14: if with a [Gold](#golds) or [Red](#reds) (but not both).",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gold",
+              "target": "Gold"
+            },
+            {
+              "kind": "color",
+              "label": "Red",
+              "target": "Red"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "timony",
+      "name": "Timony",
+      "color": "Copper",
+      "role": "bureaucrat",
+      "core_value": 10,
+      "deploy": {
+        "text": "For each Gold at the Institute, place 1 influence token there.",
+        "raw": "For each [Gold](#golds) at the Institute, place 1 influence token there.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 3,
+          "condition": "for each of your Influence tokens on the Institute.",
+          "raw": "3: for each of your Influence tokens on the Institute.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "trigg",
+      "name": "Trigg",
+      "color": "Gray",
+      "role": "security",
+      "core_value": 15,
+      "deploy": {
+        "text": "Move a Gray or Yellow from any location to under this card. You may gain that card; if you do, end your turn.",
+        "raw": "Move a [Gray](#grays) or [Yellow](#yellows) from any location to under this card. You may gain that card; if you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gray",
+            "target": "Gray"
+          },
+          {
+            "kind": "color",
+            "label": "Yellow",
+            "target": "Yellow"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "raw": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Gray & Yellow on all locations.",
+          "raw": "5: for each [Gray](#grays) & [Yellow](#yellows) on all locations.",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Gray",
+              "target": "Gray"
+            },
+            {
+              "kind": "color",
+              "label": "Yellow",
+              "target": "Yellow"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "ugly-dan",
+      "name": "Ugly Dan",
+      "color": "Gray",
+      "role": "security",
+      "core_value": 20,
+      "deploy": {
+        "text": "Move a Red or Brown from any location to under this card. You may gain that card; if you do, end your turn.",
+        "raw": "Move a [Red](#reds) or [Brown](#browns) from any location to under this card. You may gain that card; if you do, end your turn.",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Red",
+            "target": "Red"
+          },
+          {
+            "kind": "color",
+            "label": "Brown",
+            "target": "Brown"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": {
+        "text": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "raw": "You may treat this card as if it is any one other color (in addition to Gray).",
+        "refs": []
+      },
+      "bonuses": [
+        {
+          "points": 5,
+          "condition": "for each Red & Brown on all locations.",
+          "raw": "5: for each [Red](#reds) & [Brown](#browns) on all locations.",
+          "refs": [
+            {
+              "kind": "color",
+              "label": "Red",
+              "target": "Red"
+            },
+            {
+              "kind": "color",
+              "label": "Brown",
+              "target": "Brown"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "uncle-narol",
+      "name": "Uncle Narol",
+      "color": "Red",
+      "role": "laborer",
+      "core_value": 10,
+      "deploy": {
+        "text": "Gain 2 Helium.",
+        "raw": "Gain 2 Helium.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 40,
+          "condition": "if with only cards having core values of 10 points or less.",
+          "raw": "40: if with only cards having core values of 10 points or less.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "victra",
+      "name": "Victra",
+      "color": "Gold",
+      "role": "elite",
+      "core_value": 20,
+      "deploy": {
+        "text": "Gain the bottom card of this location (if it's not this card). Banish Victra unless you deployed her on a Gold.",
+        "raw": "Gain the bottom card of this location (if it's not this card). [Banish](#banish) Victra unless you [deployed](#deploy) her on a [Gold](#golds).",
+        "refs": [
+          {
+            "kind": "color",
+            "label": "Gold",
+            "target": "Gold"
+          }
+        ]
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 10,
+          "condition": "if with The Howlers.",
+          "raw": "10: if with [The Howlers](#the-howlers).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "The Howlers",
+              "target": "howlers"
+            }
+          ]
+        },
+        {
+          "points": 10,
+          "condition": "if with Sevro or Darrow.",
+          "raw": "10: if with [Sevro](#sevro) or [Darrow](#darrow).",
+          "refs": [
+            {
+              "kind": "character",
+              "label": "Sevro",
+              "target": "sevro"
+            },
+            {
+              "kind": "character",
+              "label": "Darrow",
+              "target": "darrow"
+            }
+          ]
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "virga",
+      "name": "Virga",
+      "color": "Blue",
+      "role": "pilot",
+      "core_value": 10,
+      "deploy": {
+        "text": "Advance twice on the Fleet Track, then all other players advance once on the Fleet Track.",
+        "raw": "Advance twice on the Fleet Track, then all other players advance once on the Fleet Track.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 15,
+          "condition": "if your Fleet Track position is 6–8.",
+          "raw": "15: if your Fleet Track position is 6–8.",
+          "refs": []
+        },
+        {
+          "points": 30,
+          "condition": "if your Fleet Track position is 9 or 10.",
+          "raw": "30: if your Fleet Track position is 9 or 10.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "vlogger",
+      "name": "Vlogger",
+      "color": "Violet",
+      "role": "artist",
+      "core_value": 7,
+      "deploy": {
+        "text": "If you're further on the Fleet Track than the player to your right, give them the Vlogger, gain the top 2 cards of the deck, then end your turn.",
+        "raw": "If you're further on the Fleet Track than the player to your right, give them the Vlogger, gain the top 2 cards of the deck, then end your turn.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 23,
+          "condition": "if you are the furthest on the Fleet track (or tied for the furthest).",
+          "raw": "23: if you are the furthest on the Fleet track (or tied for the furthest).",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    },
+    {
+      "id": "zanzibar",
+      "name": "Zanzibar",
+      "color": "Violet",
+      "role": "artist",
+      "core_value": 9,
+      "deploy": {
+        "text": "Move a card with an odd core value from this location to the top of another location.",
+        "raw": "Move a card with an odd core value from this location to the top of another location.",
+        "refs": []
+      },
+      "block": null,
+      "endgame": null,
+      "bonuses": [
+        {
+          "points": 31,
+          "condition": "if the core value of each of your cards is an odd number.",
+          "raw": "31: if the core value of each of your cards is an odd number.",
+          "refs": []
+        }
+      ],
+      "art_url": null
+    }
+  ]
+}
