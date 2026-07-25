@@ -1,0 +1,35 @@
+# Fly.io deployment for the Red Rising web app.
+#
+#   fly launch --no-deploy    # first time: creates the app, keep this file
+#   fly volumes create rr_data --size 1
+#   fly deploy
+#
+# Auth is the unguessable game link + per-seat token; there are no accounts, so
+# keep the app URL private to you and your partner.
+
+app = "red-rising"
+primary_region = "sea"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  RR_DB = "/data/red_rising.db"
+
+[[mounts]]
+  source = "rr_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0   # a 2-player game doesn't need an always-on machine
+
+# One machine only: the engine holds live games in memory, so all traffic for a
+# game must reach the same instance. Games still survive restarts (replayed from
+# the SQLite answer log on the volume).
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
