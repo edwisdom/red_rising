@@ -220,3 +220,10 @@ __marimo__/
 
 # Cursor
 .cursorignore
+
+# Red Rising
+web/node_modules/
+web/dist/
+web/*.tsbuildinfo
+red_rising.db
+*.db-journal
