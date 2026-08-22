@@ -11,10 +11,13 @@ export function DecisionBar({
   pending,
   waiting,
   onAnswer,
+  sending,
 }: {
   pending: PendingDecision | null;
   waiting: WaitingOn | null;
   onAnswer: (tokens: string[]) => void;
+  /** An answer is in flight for this decision; the options should go quiet. */
+  sending?: boolean;
 }) {
   // Deliberately not an AnimatePresence swap: `mode="wait"` holds the outgoing
   // prompt on screen until its exit finishes, and a stalled exit means the next
@@ -38,13 +41,17 @@ export function DecisionBar({
             <span className="font-display text-[13px] font-bold tracking-wide text-amber-200">
               {pending.prompt}
             </span>
+            {sending && <span className="text-[11px] opacity-50">sending…</span>}
             {pending.max_choices > 1 && (
               <span className="text-[11px] opacity-50">
                 choose {pending.min_choices}–{pending.max_choices}
               </span>
             )}
           </div>
-          <div className="flex flex-wrap gap-1.5">
+          <div
+            className="flex flex-wrap gap-1.5 transition-opacity"
+            style={{ opacity: sending ? 0.4 : 1, pointerEvents: sending ? "none" : undefined }}
+          >
             {pending.options.map((o, i) => (
               <OptionButton key={o.token} o={o} i={i} onClick={() => onAnswer([o.token])} />
             ))}

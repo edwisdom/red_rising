@@ -36,7 +36,7 @@ const PEEK_W = 250;
 
 export function CardZoomProvider({ children }: { children: ReactNode }) {
   const [peeked, setPeeked] = useState<{ id: string; rect: DOMRect } | null>(null);
-  const [modal, setModal] = useState<{ id: string; list: string[] } | null>(null);
+  const [modal, setModal] = useState<{ id: string; list: string[]; trail: string[] } | null>(null);
   const timer = useRef<number | null>(null);
 
   const endPeek = useCallback(() => {
@@ -53,7 +53,7 @@ export function CardZoomProvider({ children }: { children: ReactNode }) {
   const inspect = useCallback(
     (cardId: string, list?: string[]) => {
       endPeek();
-      setModal({ id: cardId, list: list?.length ? list : [cardId] });
+      setModal({ id: cardId, list: list?.length ? list : [cardId], trail: [] });
     },
     [endPeek],
   );
@@ -67,7 +67,19 @@ export function CardZoomProvider({ children }: { children: ReactNode }) {
       <InspectorModal
         state={modal}
         onClose={() => setModal(null)}
+        // Stepping along the list replaces where you are; following a reference
+        // out of a card remembers where you came from.
         onNavigate={(id) => setModal((m) => (m ? { ...m, id } : m))}
+        onFollow={(id) =>
+          setModal((m) => (m ? { ...m, id, trail: [...m.trail, m.id] } : m))
+        }
+        onBack={() =>
+          setModal((m) =>
+            m && m.trail.length
+              ? { ...m, id: m.trail[m.trail.length - 1], trail: m.trail.slice(0, -1) }
+              : m,
+          )
+        }
       />
     </Ctx.Provider>
   );
@@ -291,24 +303,31 @@ function InspectorModal({
   state,
   onClose,
   onNavigate,
+  onFollow,
+  onBack,
 }: {
-  state: { id: string; list: string[] } | null;
+  state: { id: string; list: string[]; trail: string[] } | null;
   onClose: () => void;
   onNavigate: (id: string) => void;
+  onFollow: (id: string) => void;
+  onBack: () => void;
 }) {
   const list = state?.list ?? [];
+  const trail = state?.trail ?? [];
+  // -1 when you have followed a reference off the list you opened from; the
+  // position counter is meaningless then, so it hides rather than reading "0 / 3".
   const idx = state ? list.indexOf(state.id) : -1;
 
   useEffect(() => {
     if (!state) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") (trail.length ? onBack : onClose)();
       if (e.key === "ArrowLeft" && idx > 0) onNavigate(list[idx - 1]);
       if (e.key === "ArrowRight" && idx >= 0 && idx < list.length - 1) onNavigate(list[idx + 1]);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [state, idx, list, onClose, onNavigate]);
+  }, [state, idx, list, trail, onClose, onNavigate, onBack]);
 
   if (typeof document === "undefined") return null;
   return createPortal(
@@ -339,13 +358,24 @@ function InspectorModal({
               <CardFull
                 cardId={state.id}
                 width={Math.min(340, typeof window !== "undefined" ? window.innerWidth - 130 : 340)}
-                onCardRef={(id) => onNavigate(id)}
+                onCardRef={onFollow}
               />
-              {list.length > 1 && (
-                <div className="text-center text-xs opacity-50 mt-2 tabular-nums">
-                  {idx + 1} / {list.length} · ← → to browse · Esc to close
-                </div>
-              )}
+              <div className="text-center text-xs opacity-50 mt-2 tabular-nums h-6 flex items-center justify-center gap-3">
+                {trail.length > 0 && (
+                  <button
+                    onClick={onBack}
+                    className="px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 text-amber-200 transition"
+                  >
+                    ← back
+                  </button>
+                )}
+                {idx >= 0 && list.length > 1 && (
+                  <span>
+                    {idx + 1} / {list.length} · ← → to browse
+                  </span>
+                )}
+                <span className="opacity-70">Esc to {trail.length ? "go back" : "close"}</span>
+              </div>
             </div>
             <NavBtn
               dir="▶"

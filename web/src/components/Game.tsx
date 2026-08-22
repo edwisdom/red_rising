@@ -66,9 +66,27 @@ export function Game({ creds }: { creds: Creds }) {
   const view = replay ? replay.view : live;
   const events = replay ? replay.events : liveEvents;
 
+  // Over a real connection there is a visible gap between clicking and the board
+  // changing. Remember which decision we have already answered so the options can
+  // go quiet immediately instead of sitting there looking unclicked.
+  const [sentFor, setSentFor] = useState<number | null>(null);
+  const awaitingServer = sentFor !== null && sentFor === live?.pending?.id;
   const answer = (tokens: string[]) => {
-    if (!replay && live?.pending) sockRef.current?.answer(live.pending.id, tokens);
+    if (replay || !live?.pending || awaitingServer) return;
+    setSentFor(live.pending.id);
+    sockRef.current?.answer(live.pending.id, tokens);
   };
+
+  // A rejected answer leaves the same decision pending, so release the hold on a
+  // timer (and on any server error) rather than leaving the bar dead.
+  useEffect(() => {
+    if (!awaitingServer) return;
+    const t = setTimeout(() => setSentFor(null), 4000);
+    return () => clearTimeout(t);
+  }, [awaitingServer]);
+  useEffect(() => {
+    if (error) setSentFor(null);
+  }, [error]);
 
   const nameOf = useMemo(() => {
     const names = new Map<string, string>();
@@ -206,6 +224,7 @@ export function Game({ creds }: { creds: Creds }) {
                 pending={live?.pending ?? null}
                 waiting={live?.waiting_on ?? null}
                 onAnswer={answer}
+                sending={awaitingServer}
               />
             )
           )}
