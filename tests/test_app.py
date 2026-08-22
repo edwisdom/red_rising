@@ -9,6 +9,8 @@ from __future__ import annotations
 import asyncio
 import random
 
+import pytest
+
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 
@@ -189,3 +191,64 @@ def test_replay_rebuilds_state_at_an_earlier_step(tmp_path):
     # And it matches a fresh full engine driven through the same first 3 answers.
     assert len(at3.events) > 0
     store.close()
+
+
+# --------------------------------------------------------------------------- #
+# Static serving
+# --------------------------------------------------------------------------- #
+# The SPA catch-all has to hand back real files (the card portraits Vite copies
+# from web/public/ to the root of dist/) rather than the shell, or the browser
+# asks for a .webp and is given index.html. The Vite dev server serves public/
+# itself, so this only ever breaks in a built deployment.
+
+
+def _client_with_dist(tmp_path, monkeypatch):
+    """A TestClient whose DIST points at a throwaway build tree."""
+    from fastapi.testclient import TestClient
+
+    (tmp_path / "assets").mkdir()
+    (tmp_path / "index.html").write_text("<!doctype html><div id=root></div>")
+    (tmp_path / "characters").mkdir()
+    (tmp_path / "characters" / "darrow.webp").write_bytes(b"RIFF____WEBPfake")
+
+    from red_rising.app import server
+
+    monkeypatch.setattr(server, "DIST", tmp_path)
+    return TestClient(server.app)
+
+
+def test_public_assets_are_served_not_shadowed_by_the_spa(tmp_path, monkeypatch):
+    client = _client_with_dist(tmp_path, monkeypatch)
+
+    res = client.get("/characters/darrow.webp")
+    assert res.status_code == 200
+    assert res.content == b"RIFF____WEBPfake"
+    assert "html" not in res.headers["content-type"]
+
+
+def test_client_routes_still_fall_through_to_the_shell(tmp_path, monkeypatch):
+    client = _client_with_dist(tmp_path, monkeypatch)
+
+    # /g/<id> is client-side routing: no such file, so the shell must answer.
+    res = client.get("/g/abc123")
+    assert res.status_code == 200
+    assert "<div id=root>" in res.text
+
+
+# Serving any real file under dist/ means the containment check is what stands
+# between a crafted path and the rest of the filesystem. Verified load-bearing:
+# without it, "/../outside.txt" resolves outside the build tree and is served.
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/../outside.txt",
+        "/%2e%2e/outside.txt",
+        "/characters/../../outside.txt",
+        "/%2e%2e%2foutside.txt",
+    ],
+)
+def test_traversal_cannot_escape_the_build_directory(path, tmp_path, monkeypatch):
+    (tmp_path.parent / "outside.txt").write_text("not yours")
+    client = _client_with_dist(tmp_path, monkeypatch)
+
+    assert "not yours" not in client.get(path).text

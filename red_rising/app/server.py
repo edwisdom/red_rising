@@ -190,7 +190,20 @@ if (DIST / "assets").is_dir():
 
 @app.get("/{full_path:path}")
 def spa(full_path: str) -> Response:
-    """Serve the SPA shell for any non-API path (client-side routing)."""
+    """Serve a built file if one exists at that path, else the SPA shell.
+
+    Vite copies everything in `web/public/` (the 112 card portraits) to the root
+    of `dist/`, not into `dist/assets/`, so mounting /assets alone left those
+    paths falling through to the shell — the browser asked for a .webp and got
+    index.html back. Dev never showed it because Vite serves public/ itself.
+
+    `resolve()` plus the containment check is what keeps a crafted "../" path
+    from reading outside the build directory.
+    """
+    if full_path:
+        candidate = (DIST / full_path).resolve()
+        if candidate.is_file() and candidate.is_relative_to(DIST.resolve()):
+            return FileResponse(candidate)
     index = DIST / "index.html"
     if index.is_file():
         return FileResponse(index)
