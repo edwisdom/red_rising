@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import type { PlayerView, ScoreBreakdown } from "../types";
 import { scoreTotal } from "../types";
-import { LOCATION } from "../theme";
+import { LOCATION, seatColor } from "../theme";
 import { Icon } from "./Icons";
 import { Counter, HeliumIcon, SovereignIcon } from "./Tokens";
 
@@ -116,6 +116,10 @@ export function Scoreboard({ view }: { view: PlayerView }) {
               <div key={s} className="text-right">
                 <div className="flex items-center justify-end gap-1.5">
                   {totals[s] === best && <span title="Winner">👑</span>}
+                  <span
+                    className="w-2 h-2 rounded-full shrink-0"
+                    style={{ background: seatColor(s) }}
+                  />
                   <span className="font-display font-bold text-sm truncate">{nameOf(s)}</span>
                 </div>
                 <motion.div
@@ -165,7 +169,10 @@ export function Scoreboard({ view }: { view: PlayerView }) {
           <div className="mt-6 space-y-2">
             {seats.map((s) => (
               <div key={s} className="flex items-center gap-2">
-                <span className="w-20 shrink-0 truncate text-[11px] uppercase tracking-wide opacity-50">
+                <span
+                  className="w-20 shrink-0 truncate text-[11px] uppercase tracking-wide"
+                  style={{ color: seatColor(s) }}
+                >
                   {nameOf(s)}
                 </span>
                 <span className="flex-1 flex h-2.5 rounded-full overflow-hidden bg-white/5">

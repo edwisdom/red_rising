@@ -49,6 +49,17 @@ export const DECK_VIOLET = "#ad1aad";
 
 export const LOCATION_LABEL: Record<string, string> = { Institute: "The Institute" };
 
+// Player identity. Assigned by SEAT, never by "is this me", so both players see
+// the same person in the same colour and can talk about "the cyan marker".
+// Chosen to sit clear of the four location colours and to stay legible as a 10px
+// token on the felt.
+const SEAT_COLORS = ["#ff9f4a", "#4fd2e8", "#c98bff", "#7ee787", "#ff7ab8", "#ffe066"];
+
+export function seatColor(seat: string): string {
+  const n = Number(seat.replace(/\D/g, ""));
+  return SEAT_COLORS[(Number.isFinite(n) ? n : 0) % SEAT_COLORS.length];
+}
+
 // Portraits are vendored under web/public/characters/<card id>.webp.
 export function portrait(cardId: string): string {
   return `/characters/${cardId}.webp`;

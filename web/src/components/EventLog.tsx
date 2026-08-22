@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { describeEvent, type LogEvent } from "../eventText";
-import { portrait } from "../theme";
+import { portrait, seatColor } from "../theme";
 import { Icon } from "./Icons";
 import { useCardZoom } from "./CardZoom";
 
@@ -75,10 +75,11 @@ export function EventLog({
                 )}
                 <span className="min-w-0">
                   {l.seat && (
+                    // Same colour the player's token wears on the board tracks,
+                    // so "the cyan one" means one person everywhere.
                     <span
-                      className={`font-semibold ${
-                        l.seat === youSeat ? "text-amber-200" : "text-[#e0b9c4]"
-                      }`}
+                      className="font-semibold"
+                      style={{ color: seatColor(l.seat), opacity: l.seat === youSeat ? 1 : 0.85 }}
                     >
                       {nameOf(l.seat)}{" "}
                     </span>

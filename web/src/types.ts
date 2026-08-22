@@ -128,3 +128,19 @@ export function scoreTotal(s: ScoreBreakdown): number {
 }
 
 export const FLEET_TRACK_POINTS = [0, 1, 3, 6, 10, 15, 21, 28, 34, 39, 43];
+export const MAX_FLEET = 10;
+export const MAX_INFLUENCE = 10;
+
+/**
+ * What each Institute token is currently worth: 4 points apiece for the house
+ * with the most, 2 for the second most, 1 otherwise. Mirrors `score_influence`
+ * in the engine — the neutral house shifts the tiers without scoring itself,
+ * which is the part nobody remembers mid-game.
+ */
+export function influenceRate(count: number, allCounts: number[]): number {
+  if (count === 0) return 1;
+  const tiers = [...new Set(allCounts.filter((c) => c > 0))].sort((a, b) => b - a);
+  if (count === tiers[0]) return 4;
+  if (tiers.length > 1 && count === tiers[1]) return 2;
+  return 1;
+}

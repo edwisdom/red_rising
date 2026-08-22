@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useSpring, useTransform } from "framer-motion";
-import { FLEET_TRACK_POINTS } from "../types";
-import { LOCATION } from "../theme";
-import { Icon } from "./Icons";
 
 // A number that rolls to its new value and flashes gold when it climbs — the
 // digital stand-in for a token actually sliding across the board.
@@ -75,40 +72,5 @@ export function SovereignIcon({ size = 13 }: { size?: number }) {
     <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true">
       <path d="M3 7l4.2 3.2L12 3l4.8 7.2L21 7l-1.6 11.5H4.6L3 7zm3.4 13.5h11.2V22H6.4v-1.5z" />
     </svg>
-  );
-}
-
-// The Fleet Track's payout curve is steep and non-obvious (0,1,3,6,10,15,21…),
-// so the track shows both where you are and what that is worth.
-export function FleetTrack({ pos, compact }: { pos: number; compact?: boolean }) {
-  const pts = FLEET_TRACK_POINTS[Math.min(pos, FLEET_TRACK_POINTS.length - 1)] ?? 0;
-  const blue = LOCATION.Jupiter.color;
-  return (
-    <span
-      className="inline-flex items-center gap-1.5 rounded-md px-1.5 py-0.5"
-      title={`Fleet Track: position ${pos} — worth ${pts} VP at the end of the game`}
-    >
-      <Icon name="Jupiter" size={13} style={{ color: blue }} />
-      {!compact && (
-        <span className="flex items-center gap-[2px]">
-          {FLEET_TRACK_POINTS.map((_, i) => (
-            <motion.span
-              key={i}
-              className="rounded-full"
-              animate={{
-                width: i === pos ? 7 : 4,
-                height: i === pos ? 7 : 4,
-                backgroundColor: i === pos ? blue : i < pos ? `${blue}88` : "rgba(255,255,255,.14)",
-              }}
-              transition={{ type: "spring", stiffness: 400, damping: 26 }}
-              style={{ display: "block" }}
-            />
-          ))}
-        </span>
-      )}
-      <span className="text-[11px] tabular-nums opacity-70">
-        <Counter value={pts} /> vp
-      </span>
-    </span>
   );
 }

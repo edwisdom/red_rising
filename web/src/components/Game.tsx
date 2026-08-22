@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useGame, type Creds } from "../store";
 import type { PlayerView } from "../types";
 import { GameSocket } from "../ws";
+import { BoardTracks } from "./BoardTracks";
 import { CardView } from "./CardView";
 import { HEADER_H, LocationPile } from "./LocationPile";
 import { PlayerPanel } from "./PlayerPanel";
@@ -191,8 +192,9 @@ export function Game({ creds }: { creds: Creds }) {
             ))}
           </div>
 
-          {/* The board. One row of locations, sized to the room available, so a
-              desktop window fills out and a phone still shows all four. */}
+          {/* Shared board spaces first — the two tracks both players read off the
+              same way — then the locations themselves. */}
+          <BoardTracks view={view} compact={narrowPanels} />
           <Board locations={view.locations} locTokens={locTokens} onSelect={(t) => answer([t])} />
 
           {/* Your side of the table */}

@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
 import type { OpponentView, SelfView } from "../types";
 import { LOCATION } from "../theme";
-import { Icon } from "./Icons";
-import { Counter, FleetTrack, HeliumIcon, Pip, SovereignIcon } from "./Tokens";
+import { seatColor } from "../theme";
+import { Counter, HeliumIcon, Pip, SovereignIcon } from "./Tokens";
 
-// One player's side of the table: who they are, what they hold, and — when it is
-// their turn — a lit rim so you never have to hunt for whose move it is.
+// One player's side of the table: who they are, what they hold privately, and —
+// when it is their turn — a lit rim so you never have to hunt for whose move it
+// is. The Fleet Track and Institute influence are deliberately NOT here: they are
+// shared board spaces, and reading them off two separate corners of the screen
+// made the one comparison that matters into a memory test. They live in
+// BoardTracks now.
 export function PlayerPanel({
   p,
   isSelf,
@@ -31,9 +35,11 @@ export function PlayerPanel({
       className="rounded-xl px-3 py-2 bg-black/35 backdrop-blur-sm"
     >
       <div className="flex items-center gap-2 flex-wrap">
-        {isCurrent && (
-          <span className="w-2 h-2 rounded-full bg-amber-300 pulse-ring shrink-0" title="Their turn" />
-        )}
+        <span
+          className={`w-2 h-2 rounded-full shrink-0 ${isCurrent ? "pulse-ring" : ""}`}
+          style={{ background: seatColor(p.seat), opacity: isCurrent ? 1 : 0.55 }}
+          title={isCurrent ? "Their turn" : p.name}
+        />
         <span className="font-display font-bold text-[15px] leading-none">{p.name}</span>
         <span className="text-[10px] uppercase tracking-[0.14em] opacity-45">House {p.house}</span>
         {isSelf && <span className="text-[10px] uppercase tracking-wider text-amber-300/70">you</span>}
@@ -56,21 +62,13 @@ export function PlayerPanel({
         )}
       </div>
 
-      <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
+      <div className={`flex items-center gap-1.5 flex-wrap ${compact ? "mt-1" : "mt-1.5"}`}>
         <Pip
           icon={<HeliumIcon />}
           tint={LOCATION.Mars.color}
           value={p.helium}
           title={`${p.helium} Helium — 3 VP each`}
           suffix="He"
-        />
-        <FleetTrack pos={p.fleet} compact={compact} />
-        <Pip
-          icon={<Icon name="Institute" size={13} />}
-          tint={LOCATION.Institute.color}
-          value={p.influence_on_institute}
-          title={`${p.influence_on_institute} Influence on the Institute (scores 4/2/1 VP each by majority)`}
-          suffix="inf"
         />
         <span
           className="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 leading-none bg-white/5"
