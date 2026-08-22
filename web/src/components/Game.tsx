@@ -15,7 +15,7 @@ import { Zoomable } from "./CardZoom";
 import { Icon } from "./Icons";
 import { DECK_VIOLET } from "../theme";
 import { useFitCards } from "../useBoardScale";
-import { useMediaQuery, WIDE } from "../useMediaQuery";
+import { NARROW, useMediaQuery, WIDE } from "../useMediaQuery";
 
 export function Game({ creds }: { creds: Creds }) {
   const live = useGame((s) => s.view);
@@ -29,6 +29,9 @@ export function Game({ creds }: { creds: Creds }) {
   // Below ~1100px the log costs the board more room than it is worth, so it
   // becomes an overlay you pull open instead of a column that squeezes the table.
   const wide = useMediaQuery(WIDE);
+  // On a phone the fleet track's eleven pips are the widest thing in a panel and
+  // the least readable; the VP number beside it says the same thing.
+  const narrowPanels = useMediaQuery(NARROW);
   // Open by default only where it is free; on a narrow screen it would land as a
   // sheet over the board before you have done anything.
   const [logOpen, setLogOpen] = useState(
@@ -161,6 +164,7 @@ export function Game({ creds }: { creds: Creds }) {
                 isSelf={false}
                 isCurrent={o.seat === view.current_player_seat}
                 handCount={o.hand_count}
+                compact={narrowPanels}
               />
             ))}
           </div>
@@ -178,6 +182,7 @@ export function Game({ creds }: { creds: Creds }) {
                   isSelf
                   isCurrent={view.you.seat === view.current_player_seat}
                   handCount={hand.length}
+                  compact={narrowPanels}
                 />
               </div>
               <span className="text-[10px] uppercase tracking-[0.18em] opacity-35 hidden sm:block">
@@ -267,13 +272,19 @@ function Board({
   onSelect: (token: string) => void;
 }) {
   const tallest = Math.max(1, ...locations.map((l) => l.cards.length));
+  // On a phone the four locations in one row would each be at their floor with
+  // most of the screen's height unused. Two by two trades the horizontal scroll
+  // for cards you can actually read.
+  const narrow = useMediaQuery(NARROW);
+  const cols = narrow ? 2 : locations.length;
   const { ref, cardWidth } = useFitCards({
-    lanes: locations.length,
+    lanes: cols,
+    rows: Math.ceil(locations.length / cols),
     stack: tallest,
-    gap: 24,
+    gap: narrow ? 10 : 24,
     chrome: HEADER_H + 22, // label block + plinth padding + the row's own gap
     lanePad: 16,
-    min: 80,
+    min: narrow ? 92 : 80,
     max: 210,
   });
   // A floor on each region, so a short window shrinks the board (which can
@@ -283,7 +294,10 @@ function Board({
       ref={ref}
       className="flex-[3] min-h-[150px] flex items-center justify-center overflow-auto thin-scroll px-3 sm:px-4 py-2"
     >
-      <div className="flex gap-3 sm:gap-6">
+      <div
+        className="grid gap-2.5 sm:gap-6 justify-center"
+        style={{ gridTemplateColumns: `repeat(${cols}, max-content)` }}
+      >
         {locations.map((loc) => (
           <LocationPile
             key={loc.location}

@@ -8,6 +8,8 @@ const STRIP_FRACTION = 3.1 / 14;
 interface Fit {
   /** How many cards sit side by side. */
   lanes: number;
+  /** How many rows of lanes; each row gets its own share of the height. */
+  rows?: number;
   /** Deepest stack in any lane; each card under the top one costs a strip. */
   stack?: number;
   /** Horizontal gap between lanes, px. */
@@ -27,6 +29,7 @@ interface Fit {
  */
 export function useFitCards({
   lanes,
+  rows = 1,
   stack = 1,
   gap = 12,
   chrome = 0,
@@ -44,7 +47,7 @@ export function useFitCards({
       const { width, height } = el.getBoundingClientRect();
       if (!width || !height) return;
       const stackFactor = CARD_RATIO + STRIP_FRACTION * Math.max(0, stack - 1);
-      const byHeight = (height - chrome) / stackFactor;
+      const byHeight = (height / Math.max(1, rows) - chrome) / stackFactor;
       const n = Math.max(1, lanes);
       const byWidth = (width - gap * (n - 1) - lanePad * n) / n;
       setW(Math.round(Math.max(min, Math.min(max, byHeight, byWidth))));
@@ -53,7 +56,7 @@ export function useFitCards({
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [lanes, stack, gap, chrome, lanePad, min, max]);
+  }, [lanes, rows, stack, gap, chrome, lanePad, min, max]);
 
   return { ref, cardWidth: w };
 }

@@ -17,3 +17,6 @@ export function useMediaQuery(query: string): boolean {
 
 /** Wide enough to park the game log beside the board without squeezing it. */
 export const WIDE = "(min-width: 1100px)";
+
+/** Phone-width: four locations abreast stop being worth the scroll. */
+export const NARROW = "(max-width: 640px)";
