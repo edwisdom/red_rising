@@ -1,37 +1,85 @@
+import { motion } from "framer-motion";
 import type { OpponentView, SelfView } from "../types";
+import { LOCATION } from "../theme";
+import { Icon } from "./Icons";
+import { Counter, FleetTrack, HeliumIcon, Pip, SovereignIcon } from "./Tokens";
 
-// Compact resource readout for one player. Works for both your own panel and an
-// opponent's (an opponent has a hand count instead of visible cards).
+// One player's side of the table: who they are, what they hold, and — when it is
+// their turn — a lit rim so you never have to hunt for whose move it is.
 export function PlayerPanel({
   p,
   isSelf,
   isCurrent,
   handCount,
+  compact,
 }: {
   p: SelfView | OpponentView;
   isSelf: boolean;
   isCurrent: boolean;
   handCount: number;
+  compact?: boolean;
 }) {
   return (
-    <div
-      className={`rounded-lg px-3 py-2 border ${
-        isCurrent ? "border-amber-400/80 bg-amber-400/10" : "border-white/10 bg-black/20"
-      }`}
+    <motion.div
+      layout
+      animate={{
+        boxShadow: isCurrent
+          ? "inset 0 0 0 1.5px rgba(232,188,85,.85), 0 0 26px rgba(232,188,85,.22)"
+          : "inset 0 0 0 1px rgba(255,255,255,.09)",
+      }}
+      transition={{ duration: 0.35 }}
+      className="rounded-xl px-3 py-2 bg-black/35 backdrop-blur-sm"
     >
-      <div className="flex items-center gap-2">
-        <span className="font-semibold">{p.name}</span>
-        <span className="text-xs uppercase tracking-wide opacity-60">{p.house}</span>
-        {isSelf && <span className="text-xs opacity-60">(you)</span>}
-        {p.has_sovereign && <span title="Sovereign">👑</span>}
-        {isCurrent && <span className="text-xs text-amber-300">● turn</span>}
+      <div className="flex items-center gap-2 flex-wrap">
+        {isCurrent && (
+          <span className="w-2 h-2 rounded-full bg-amber-300 pulse-ring shrink-0" title="Their turn" />
+        )}
+        <span className="font-display font-bold text-[15px] leading-none">{p.name}</span>
+        <span className="text-[10px] uppercase tracking-[0.14em] opacity-45">House {p.house}</span>
+        {isSelf && <span className="text-[10px] uppercase tracking-wider text-amber-300/70">you</span>}
+        {p.has_sovereign && (
+          <motion.span
+            initial={{ scale: 0, rotate: -30 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 400, damping: 14 }}
+            className="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+            style={{
+              color: "#3a2a05",
+              background: `radial-gradient(circle at 30% 25%, ${LOCATION.Luna.color}, #b57f0d)`,
+              boxShadow: "0 0 12px rgba(255,182,26,.45)",
+            }}
+            title="Holds the Sovereign token — 10 VP"
+          >
+            <SovereignIcon size={11} />
+            Sovereign
+          </motion.span>
+        )}
       </div>
-      <div className="flex gap-3 mt-1 text-sm tabular-nums">
-        <span title="Helium">💎 {p.helium}</span>
-        <span title="Fleet Track">🚀 {p.fleet}</span>
-        <span title="Influence on the Institute">🏛️ {p.influence_on_institute}</span>
-        <span title="Cards in hand">🂠 {handCount}</span>
+
+      <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
+        <Pip
+          icon={<HeliumIcon />}
+          tint={LOCATION.Mars.color}
+          value={p.helium}
+          title={`${p.helium} Helium — 3 VP each`}
+          suffix="He"
+        />
+        <FleetTrack pos={p.fleet} compact={compact} />
+        <Pip
+          icon={<Icon name="Institute" size={13} />}
+          tint={LOCATION.Institute.color}
+          value={p.influence_on_institute}
+          title={`${p.influence_on_institute} Influence on the Institute (scores 4/2/1 VP each by majority)`}
+          suffix="inf"
+        />
+        <span
+          className="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 leading-none bg-white/5"
+          title={`${handCount} cards in hand`}
+        >
+          <span className="opacity-60 text-[12px]">🂠</span>
+          <Counter value={handCount} className="font-semibold text-[13px]" />
+        </span>
       </div>
-    </div>
+    </motion.div>
   );
 }

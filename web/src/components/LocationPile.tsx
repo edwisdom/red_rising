@@ -1,66 +1,113 @@
 import { AnimatePresence, motion } from "framer-motion";
 import type { LocationView } from "../types";
+import { LOCATION, LOCATION_LABEL } from "../theme";
 import { CardView } from "./CardView";
+import { Icon, LOCATION_ICON } from "./Icons";
+import { Zoomable } from "./CardZoom";
 
-const BONUS: Record<string, string> = {
-  Jupiter: "🚀 Advance Fleet",
-  Mars: "💎 Gain Helium",
-  Luna: "👑 Sovereign",
-  Institute: "🏛️ Influence",
-};
-const DISPLAY: Record<string, string> = { Institute: "The Institute" };
-
-// A location renders its stack as an overlap: covered cards peek out at the top,
-// the top card is shown in full. Clicking is enabled only when this location is a
-// legal choice for the current decision.
+// A location is a lit plinth with a stack of cards on it. Covered cards show only
+// their top band, exactly like the physical overlap, and the top card is dealt in
+// so you can see what just landed.
 export function LocationPile({
   loc,
   selectable,
   onSelect,
+  width,
 }: {
   loc: LocationView;
   selectable: boolean;
   onSelect?: () => void;
+  /** Card width in px — the board sizes its piles to the room it actually has. */
+  width: number;
 }) {
   const covered = loc.cards.slice(0, -1);
   const top = loc.cards[loc.cards.length - 1];
+  const meta = LOCATION[loc.location] ?? { color: "#888", glow: "#888", bonus: "" };
+  const w = width;
+  const ids = loc.cards.map((c) => c.card_id).filter((x): x is string => !!x);
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      <div
-        className={`text-xs font-semibold uppercase tracking-wide ${
-          selectable ? "text-amber-300" : "opacity-70"
-        }`}
-      >
-        {DISPLAY[loc.location] ?? loc.location}
+    <div className="flex flex-col items-center gap-1.5" style={{ width: w + 16 }}>
+      <div className="flex flex-col items-center gap-0.5 text-center">
+        <span
+          className="grid place-items-center rounded-full"
+          style={{
+            width: 34,
+            height: 34,
+            color: meta.color,
+            background: `radial-gradient(circle, ${meta.color}33, transparent 72%)`,
+            filter: `drop-shadow(0 0 7px ${meta.glow}88)`,
+          }}
+        >
+          <Icon name={LOCATION_ICON[loc.location] ?? "Deck"} size={24} />
+        </span>
+        <span
+          className={`font-display text-[11px] font-bold uppercase leading-none ${
+            selectable ? "text-amber-200" : ""
+          }`}
+          style={selectable ? undefined : { color: meta.color }}
+        >
+          {LOCATION_LABEL[loc.location] ?? loc.location}
+        </span>
+        <span className="text-[9.5px] uppercase tracking-wide opacity-45 leading-tight">
+          {meta.bonus}
+        </span>
       </div>
-      <div className="text-[10px] opacity-50 -mt-1">{BONUS[loc.location]}</div>
-      <div
-        className={`flex flex-col items-center rounded-lg p-1 ${
-          selectable ? "ring-2 ring-amber-400 cursor-pointer" : "ring-1 ring-white/5"
-        }`}
+
+      <motion.div
         onClick={selectable ? onSelect : undefined}
-        style={{ minHeight: 180, minWidth: 130, justifyContent: loc.cards.length ? "start" : "center" }}
+        animate={selectable ? { scale: 1 } : { scale: 1 }}
+        whileHover={selectable ? { scale: 1.03 } : undefined}
+        className={`relative w-full rounded-xl p-2 transition-colors ${
+          selectable ? "cursor-pointer" : ""
+        }`}
+        style={{
+          minHeight: w * 1.4 + 22,
+          // The plinth: a soft pool of the location's own light on the felt.
+          background: `radial-gradient(120% 70% at 50% 0%, ${meta.color}1f, transparent 70%), rgba(0,0,0,.28)`,
+          boxShadow: selectable
+            ? `inset 0 0 0 2px var(--gild), 0 0 22px rgba(232,188,85,.35)`
+            : `inset 0 0 0 1px ${meta.color}2e`,
+        }}
       >
-        {loc.cards.length === 0 && <span className="opacity-30 text-xs">empty</span>}
-        <div className="relative flex flex-col" style={{ gap: 0 }}>
+        {loc.cards.length === 0 && (
+          <div
+            className="absolute inset-2 rounded-lg border border-dashed grid place-items-center text-[10px] uppercase tracking-widest"
+            style={{ borderColor: `${meta.color}40`, color: `${meta.color}70` }}
+          >
+            empty
+          </div>
+        )}
+
+        <div className="relative flex flex-col items-center">
           {covered.map((c, i) => (
-            <CardView key={i} cardId={c.card_id} faceDown={c.face_down} size="md" covered />
+            <Zoomable key={`${c.card_id ?? "fd"}-${i}`} cardId={c.face_down ? null : c.card_id} list={ids}>
+              <CardView cardId={c.card_id} faceDown={c.face_down} width={w} strip />
+            </Zoomable>
           ))}
           <AnimatePresence mode="popLayout" initial={false}>
             {top && (
               <motion.div
-                key={top.card_id ?? "facedown"}
-                initial={{ opacity: 0, y: -12, scale: 0.94 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.18 }}
+                key={`${top.card_id ?? "facedown"}-${loc.cards.length}`}
+                initial={{ opacity: 0, y: -26, rotate: -4, scale: 0.92 }}
+                animate={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 420, damping: 28 }}
               >
-                <CardView cardId={top.card_id} faceDown={top.face_down} size="md" />
+                <Zoomable cardId={top.face_down ? null : top.card_id} list={ids}>
+                  <CardView cardId={top.card_id} faceDown={top.face_down} width={w} />
+                </Zoomable>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-      </div>
+
+        {loc.cards.length > 1 && (
+          <div className="absolute -top-1.5 -right-1.5 px-1.5 rounded-full bg-black/80 border border-white/15 text-[10px] tabular-nums opacity-80">
+            {loc.cards.length}
+          </div>
+        )}
+      </motion.div>
     </div>
   );
 }

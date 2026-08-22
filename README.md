@@ -45,6 +45,9 @@ red_rising/
     store.py       #   in-memory sessions + SQLite answer-log durability
     server.py      #   REST + WebSocket + serves the built SPA
 web/               # React 19 + Vite + TypeScript + Tailwind v4
+  src/theme.ts     #   the printed game's caste palette + location colours
+  src/components/  #   Icons (the game's own iconography), CardView, CardZoom…
+  public/characters/  # 112 character portraits, one per card
 ```
 
 **Why a pure engine.** Everything is `(state, answer) -> events`, deterministic
@@ -117,5 +120,8 @@ memory (and survive restarts by replaying the SQLite answer log).
 
 Built from a personal copy of the game for private two-player use. Card text lives
 in `red_rising_characters.parquet`; the rules digest is `red-rising-rulebook.md`.
-*Red Rising* is © Pierce Brown; tabletop rights Stonemaier Games. Don't redistribute
-the card data or run this as a public service.
+The character portraits in `web/public/characters/` and the card iconography in
+`web/src/components/Icons.tsx` are the game's own artwork, taken from the public
+rules reference at <https://red-rising.rulepop.com/>.
+*Red Rising* is © Pierce Brown; tabletop rights Stonemaier Games. Artwork remains
+theirs. Don't redistribute the card data or artwork, or run this as a public service.

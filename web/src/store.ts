@@ -48,8 +48,16 @@ export const useGame = create<GameStore>((set) => ({
   error: null,
   replay: null,
   setView: (view) => set({ view }),
+  // Merge on `seq` rather than appending blindly: a reconnect (or React's
+  // double-mount in dev) replays events we already hold, and a duplicated log is
+  // both wrong to read and a duplicate-key error in the feed.
   applyEvents: (events, reset) =>
-    set((s) => ({ events: reset ? events : [...s.events, ...events] })),
+    set((s) => {
+      if (reset) return { events };
+      const seen = new Set(s.events.map((e) => e.seq));
+      const fresh = events.filter((e) => !seen.has(e.seq));
+      return fresh.length ? { events: [...s.events, ...fresh] } : {};
+    }),
   setStatus: (status) => set({ status }),
   setError: (error) => set({ error }),
   setReplay: (replay) => set({ replay }),

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useGame, type Creds } from "../store";
+import type { PlayerView } from "../types";
 import { GameSocket } from "../ws";
 import { CardView } from "./CardView";
 import { LocationPile } from "./LocationPile";
@@ -9,6 +10,11 @@ import { DecisionBar } from "./DecisionBar";
 import { Scoreboard } from "./Scoreboard";
 import { EventLog } from "./EventLog";
 import { ReplayBar } from "./ReplayBar";
+import { CardIndex } from "./CardIndex";
+import { Zoomable } from "./CardZoom";
+import { Icon } from "./Icons";
+import { DECK_VIOLET } from "../theme";
+import { useFitCards } from "../useBoardScale";
 
 export function Game({ creds }: { creds: Creds }) {
   const live = useGame((s) => s.view);
@@ -19,6 +25,7 @@ export function Game({ creds }: { creds: Creds }) {
   const error = useGame((s) => s.error);
   const sockRef = useRef<GameSocket | null>(null);
   const [showLog, setShowLog] = useState(true);
+  const [showIndex, setShowIndex] = useState(false);
 
   useEffect(() => {
     const sock = new GameSocket(creds);
@@ -26,6 +33,21 @@ export function Game({ creds }: { creds: Creds }) {
     sock.connect();
     return () => sock.close();
   }, [creds]);
+
+  // "?" opens the card reference from anywhere — the digital equivalent of
+  // reaching for the rulebook without putting your hand down.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement | null)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
+      if (e.key === "?" || (e.key === "/" && !e.metaKey && !e.ctrlKey)) {
+        e.preventDefault();
+        setShowIndex((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const view = replay ? replay.view : live;
   const events = replay ? replay.events : liveEvents;
@@ -65,40 +87,48 @@ export function Game({ creds }: { creds: Creds }) {
   if (error && !view) return <Centered>{error}</Centered>;
   if (!view) return <Centered>{status === "connecting" ? "Connecting…" : "…"}</Centered>;
 
+  const yourTurn = !replay && !!live?.pending;
+  const hand = view.you.hand;
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="flex items-center justify-between px-4 py-2 border-b border-white/10">
-        <div className="font-bold tracking-wide">RED RISING</div>
-        <div className="flex items-center gap-3 text-xs">
-          <span className="opacity-60">
-            Turn {view.turn_number} · deck {view.deck_count} · banished {view.banished.length}
-          </span>
-          <ConnDot status={status} />
-          {!replay && liveEvents.length > 0 && (
-            <button
-              onClick={() => sockRef.current?.undo()}
-              className="px-2 py-1 rounded bg-white/10 hover:bg-white/20"
-              title="Undo the last action"
-            >
-              ↺ Undo
-            </button>
-          )}
-          {!replay && (
-            <button
-              onClick={() => seekReplay(0)}
-              className="px-2 py-1 rounded bg-white/10 hover:bg-white/20"
-              title="Replay the game from the start"
-            >
-              ⏮ Replay
-            </button>
-          )}
-          <button
-            onClick={() => setShowLog((v) => !v)}
-            className="px-2 py-1 rounded bg-white/10 hover:bg-white/20"
-          >
-            {showLog ? "Hide log" : "Show log"}
-          </button>
-        </div>
+    <div className="h-[100dvh] flex flex-col overflow-hidden">
+      <header className="shrink-0 flex items-center gap-3 px-3 sm:px-4 py-2 border-b border-white/10 bg-black/35 backdrop-blur-md">
+        <span className="font-display font-black tracking-[0.22em] text-[15px] text-amber-200/90 shrink-0">
+          RED&nbsp;RISING
+        </span>
+        <span className="hidden sm:flex items-center gap-2 text-[11px] uppercase tracking-wider opacity-55">
+          <span>Turn {view.turn_number}</span>
+        </span>
+        <Pile
+          count={view.deck_count}
+          label="Deck"
+          tint={DECK_VIOLET}
+          icon={<Icon name="Deck" size={12} />}
+        />
+        <Pile
+          count={view.banished.length}
+          label="Banished"
+          tint="#8c8c8c"
+          icon={<Icon name="Banish" size={12} />}
+        />
+        <span className="flex-1" />
+        <ConnDot status={status} />
+        <HeaderBtn onClick={() => setShowIndex(true)} title="Browse all 112 cards (press ?)">
+          Cards
+        </HeaderBtn>
+        {!replay && liveEvents.length > 0 && (
+          <HeaderBtn onClick={() => sockRef.current?.undo()} title="Undo the last action">
+            ↺<span className="hidden sm:inline"> Undo</span>
+          </HeaderBtn>
+        )}
+        {!replay && (
+          <HeaderBtn onClick={() => seekReplay(0)} title="Replay the game from the start">
+            ⏮<span className="hidden sm:inline"> Replay</span>
+          </HeaderBtn>
+        )}
+        <HeaderBtn onClick={() => setShowLog((v) => !v)} title="Toggle the game log">
+          {showLog ? "Hide log" : "Log"}
+        </HeaderBtn>
       </header>
 
       {replay && (
@@ -112,8 +142,8 @@ export function Game({ creds }: { creds: Creds }) {
 
       <div className="flex-1 flex min-h-0">
         <div className="flex-1 flex flex-col min-w-0">
-          {/* Opponents */}
-          <div className="flex flex-wrap gap-2 px-4 py-3">
+          {/* Across the table */}
+          <div className="flex flex-wrap gap-2 px-3 sm:px-4 pt-3 shrink-0">
             {view.opponents.map((o) => (
               <PlayerPanel
                 key={o.seat}
@@ -125,54 +155,32 @@ export function Game({ creds }: { creds: Creds }) {
             ))}
           </div>
 
-          {/* Locations */}
-          <div className="flex-1 flex flex-wrap justify-center gap-6 px-4 py-4">
-            {view.locations.map((loc) => (
-              <LocationPile
-                key={loc.location}
-                loc={loc}
-                selectable={locTokens.has(loc.location)}
-                onSelect={() => answer([locTokens.get(loc.location)!])}
-              />
-            ))}
-          </div>
+          {/* The board. One row of locations, sized to the room available, so a
+              desktop window fills out and a phone still shows all four. */}
+          <Board locations={view.locations} locTokens={locTokens} onSelect={(t) => answer([t])} />
 
-          {/* Your panel + hand */}
-          <div className="px-4 pb-2">
-            <div className="mb-2 max-w-xs">
-              <PlayerPanel
-                p={view.you}
-                isSelf
-                isCurrent={view.you.seat === view.current_player_seat}
-                handCount={view.you.hand.length}
-              />
+          {/* Your side of the table */}
+          <div className="flex-[2] min-h-0 flex flex-col border-t border-white/10 bg-black/30 backdrop-blur-sm">
+            <div className="shrink-0 px-3 sm:px-4 pt-2 flex items-center gap-3 flex-wrap">
+              <div className="min-w-[240px]">
+                <PlayerPanel
+                  p={view.you}
+                  isSelf
+                  isCurrent={view.you.seat === view.current_player_seat}
+                  handCount={hand.length}
+                />
+              </div>
+              <span className="text-[10px] uppercase tracking-[0.18em] opacity-35 hidden sm:block">
+                hover a card to read it · click to inspect
+              </span>
             </div>
-            <div className="flex gap-2 overflow-x-auto pb-2">
-              <AnimatePresence initial={false}>
-                {view.you.hand.map((id, i) => (
-                  <motion.div
-                    key={`${id}-${i}`}
-                    layout
-                    initial={{ opacity: 0, y: 16, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.85 }}
-                    transition={{ duration: 0.18 }}
-                  >
-                    <CardView
-                      cardId={id}
-                      size="md"
-                      selectable={cardTokens.has(id)}
-                      onClick={cardTokens.has(id) ? () => answer([cardTokens.get(id)!]) : undefined}
-                    />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-              {view.you.hand.length === 0 && <span className="opacity-40 text-sm">empty hand</span>}
-            </div>
+            <Hand hand={hand} cardTokens={cardTokens} onPlay={answer} yourTurn={yourTurn} />
           </div>
 
           {view.finished ? (
-            <Scoreboard view={view} />
+            <div className="overflow-y-auto thin-scroll px-4 pb-6">
+              <Scoreboard view={view} />
+            </div>
           ) : (
             !replay && (
               <DecisionBar
@@ -184,13 +192,174 @@ export function Game({ creds }: { creds: Creds }) {
           )}
         </div>
 
-        {showLog && (
-          <aside className="w-72 shrink-0 border-l border-white/10 bg-black/20 hidden md:flex flex-col">
-            <EventLog events={events} nameOf={nameOf} />
-          </aside>
-        )}
+        <AnimatePresence initial={false}>
+          {showLog && (
+            <motion.aside
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: 280, opacity: 1 }}
+              exit={{ width: 0, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 320, damping: 34 }}
+              className="shrink-0 border-l border-white/10 bg-black/30 hidden md:flex flex-col overflow-hidden"
+            >
+              <div className="w-[280px] flex-1 min-h-0 flex">
+                <EventLog events={events} nameOf={nameOf} />
+              </div>
+            </motion.aside>
+          )}
+        </AnimatePresence>
+      </div>
+
+      <CardIndex open={showIndex} onClose={() => setShowIndex(false)} />
+    </div>
+  );
+}
+
+// The four locations, sized as one unit so they always read as a single table.
+function Board({
+  locations,
+  locTokens,
+  onSelect,
+}: {
+  locations: PlayerView["locations"];
+  locTokens: Map<string, string>;
+  onSelect: (token: string) => void;
+}) {
+  const tallest = Math.max(1, ...locations.map((l) => l.cards.length));
+  const { ref, cardWidth } = useFitCards({
+    lanes: locations.length,
+    stack: tallest,
+    gap: 24,
+    chrome: 86, // location icon, name, bonus line, plinth padding
+    lanePad: 16,
+    max: 210,
+  });
+  return (
+    <div
+      ref={ref}
+      className="flex-[3] min-h-0 flex items-center justify-center overflow-auto thin-scroll px-3 sm:px-4 py-2"
+    >
+      <div className="flex gap-3 sm:gap-6">
+        {locations.map((loc) => (
+          <LocationPile
+            key={loc.location}
+            loc={loc}
+            width={cardWidth}
+            selectable={locTokens.has(loc.location)}
+            onSelect={() => onSelect(locTokens.get(loc.location)!)}
+          />
+        ))}
       </div>
     </div>
+  );
+}
+
+// Your hand, laid out with a slight arc so it reads as cards held rather than a
+// row of tiles. Playable cards are lit; every card can be read on hover.
+function Hand({
+  hand,
+  cardTokens,
+  onPlay,
+  yourTurn,
+}: {
+  hand: string[];
+  cardTokens: Map<string, string>;
+  onPlay: (tokens: string[]) => void;
+  yourTurn: boolean;
+}) {
+  const mid = (hand.length - 1) / 2;
+  const { ref, cardWidth } = useFitCards({
+    lanes: Math.max(hand.length, 4),
+    gap: 8,
+    chrome: 26, // the lift and the arc need headroom inside the scroller
+    lanePad: 0,
+    min: 104,
+    max: 176,
+  });
+  return (
+    <div
+      ref={ref}
+      className="flex-1 min-h-0 flex gap-2 overflow-x-auto overflow-y-hidden thin-scroll px-3 sm:px-4 pt-3 pb-2 items-center"
+    >
+      <AnimatePresence initial={false}>
+        {hand.map((id, i) => {
+          const playable = cardTokens.has(id);
+          const off = hand.length > 1 ? (i - mid) / Math.max(mid, 1) : 0;
+          return (
+            <motion.div
+              key={`${id}-${i}`}
+              layout
+              initial={{ opacity: 0, y: 40, scale: 0.85 }}
+              animate={{
+                opacity: 1,
+                y: Math.abs(off) * 5,
+                rotate: off * 2,
+                scale: 1,
+              }}
+              exit={{ opacity: 0, y: -60, scale: 0.8, transition: { duration: 0.25 } }}
+              transition={{ type: "spring", stiffness: 340, damping: 30, delay: i * 0.03 }}
+              className="origin-bottom"
+            >
+              <Zoomable cardId={id} list={hand} disabled={playable && yourTurn}>
+                <CardView
+                  cardId={id}
+                  width={cardWidth}
+                  selectable={playable}
+                  onClick={playable ? () => onPlay([cardTokens.get(id)!]) : undefined}
+                />
+              </Zoomable>
+            </motion.div>
+          );
+        })}
+      </AnimatePresence>
+      {hand.length === 0 && (
+        <span className="opacity-35 text-sm py-8">Your hand is empty.</span>
+      )}
+    </div>
+  );
+}
+
+// The deck and banished piles, sized so you can feel the deck draining.
+function Pile({
+  count,
+  label,
+  tint,
+  icon,
+}: {
+  count: number;
+  label: string;
+  tint: string;
+  icon: React.ReactNode;
+}) {
+  return (
+    <span
+      className="hidden sm:inline-flex items-center gap-1.5 rounded-md px-2 py-1 leading-none"
+      style={{ background: `${tint}15`, boxShadow: `inset 0 0 0 1px ${tint}35` }}
+      title={`${count} cards ${label.toLowerCase()}`}
+    >
+      <span style={{ color: tint }}>{icon}</span>
+      <span className="text-[11px] uppercase tracking-wide opacity-55">{label}</span>
+      <span className="text-[12px] font-semibold tabular-nums">{count}</span>
+    </span>
+  );
+}
+
+function HeaderBtn({
+  onClick,
+  title,
+  children,
+}: {
+  onClick: () => void;
+  title?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      title={title}
+      className="shrink-0 px-2.5 py-1 rounded-lg bg-white/8 hover:bg-white/18 text-[12px] font-medium transition"
+    >
+      {children}
+    </button>
   );
 }
 
@@ -198,8 +367,8 @@ function ConnDot({ status }: { status: string }) {
   const color =
     status === "open" ? "bg-green-400" : status === "connecting" ? "bg-amber-400" : "bg-red-400";
   return (
-    <span className="flex items-center gap-1 opacity-70" title={`Connection: ${status}`}>
-      <span className={`w-2 h-2 rounded-full ${color}`} />
+    <span className="flex items-center gap-1 text-[11px] opacity-70" title={`Connection: ${status}`}>
+      <span className={`w-2 h-2 rounded-full ${color} ${status !== "open" ? "pulse-ring" : ""}`} />
       {status !== "open" && <span>{status}</span>}
     </span>
   );

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { loadCards } from "./cards";
+import { CardZoomProvider } from "./components/CardZoom";
 import { Lobby } from "./components/Lobby";
 import { Game } from "./components/Game";
 import { loadCreds, saveCreds, type Creds } from "./store";
@@ -35,7 +36,25 @@ export function App() {
     loadCards().then(() => setReady(true));
   }, []);
 
-  if (!ready) return <div className="p-8 text-center opacity-60">Loading…</div>;
-  if (route.kind === "lobby") return <Lobby />;
-  return <Game creds={route.creds} />;
+  if (!ready) return <Splash />;
+  return (
+    <CardZoomProvider>
+      {route.kind === "lobby" ? <Lobby /> : <Game creds={route.creds} />}
+    </CardZoomProvider>
+  );
+}
+
+// The deck of 112 cards has to land before anything can render; give that beat a
+// face rather than a bare "Loading…".
+function Splash() {
+  return (
+    <div className="min-h-screen grid place-items-center">
+      <div className="text-center">
+        <div className="font-display text-3xl font-black tracking-[0.3em] text-amber-200/90 animate-pulse">
+          RED RISING
+        </div>
+        <div className="mt-2 text-xs uppercase tracking-[0.35em] opacity-40">Dealing the deck</div>
+      </div>
+    </div>
+  );
 }

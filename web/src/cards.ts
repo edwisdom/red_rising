@@ -37,3 +37,7 @@ export async function loadCards(): Promise<Map<string, CardDef>> {
 export function getCard(id: string): CardDef | undefined {
   return CARD_INDEX?.get(id);
 }
+
+export function allCards(): CardDef[] {
+  return CARD_INDEX ? [...CARD_INDEX.values()] : [];
+}
