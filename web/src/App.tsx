@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MotionConfig } from "framer-motion";
 import { loadCards } from "./cards";
 import { CardZoomProvider } from "./components/CardZoom";
 import { Lobby } from "./components/Lobby";
@@ -37,10 +38,14 @@ export function App() {
   }, []);
 
   if (!ready) return <Splash />;
+  // The CSS reset for reduced motion cannot reach framer's JS-driven animations,
+  // so tell framer about the same preference.
   return (
-    <CardZoomProvider>
-      {route.kind === "lobby" ? <Lobby /> : <Game creds={route.creds} />}
-    </CardZoomProvider>
+    <MotionConfig reducedMotion="user">
+      <CardZoomProvider>
+        {route.kind === "lobby" ? <Lobby /> : <Game creds={route.creds} />}
+      </CardZoomProvider>
+    </MotionConfig>
   );
 }
 

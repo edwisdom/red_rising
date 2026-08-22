@@ -12,6 +12,7 @@ import { EventLog } from "./EventLog";
 import { ReplayBar } from "./ReplayBar";
 import { CardIndex } from "./CardIndex";
 import { Zoomable } from "./CardZoom";
+import { TurnHerald } from "./TurnHerald";
 import { Icon } from "./Icons";
 import { DECK_VIOLET } from "../theme";
 import { useFitCards } from "../useBoardScale";
@@ -256,6 +257,12 @@ export function Game({ creds }: { creds: Creds }) {
         )}
       </AnimatePresence>
 
+      <TurnHerald
+        yourTurn={yourTurn}
+        yourName={view.you.name}
+        waitingOn={live?.waiting_on?.name ?? null}
+        finished={view.finished}
+      />
       <CardIndex open={showIndex} onClose={() => setShowIndex(false)} />
     </div>
   );
