@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { Option, PendingDecision, WaitingOn } from "../types";
 import { getCard } from "../cards";
 import { caste, LOCATION, LOCATION_LABEL, portrait } from "../theme";
@@ -16,17 +16,22 @@ export function DecisionBar({
   waiting: WaitingOn | null;
   onAnswer: (tokens: string[]) => void;
 }) {
-  return (
-    <AnimatePresence mode="wait">
-      {pending ? (
+  // Deliberately not an AnimatePresence swap: `mode="wait"` holds the outgoing
+  // prompt on screen until its exit finishes, and a stalled exit means the next
+  // decision never mounts — the board lights up but the bar still asks the last
+  // question. Keying the inner block on the decision id replays the entrance
+  // without ever gating the new prompt on the old one leaving.
+  if (pending) {
+    return (
+      <div
+        className="shrink-0 border-t border-amber-400/45 bg-gradient-to-t from-[#1a0d10] to-[#12080b]/95 backdrop-blur px-3 sm:px-4 py-2.5"
+        style={{ boxShadow: "0 -10px 30px rgba(0,0,0,.5), inset 0 1px 0 rgba(232,188,85,.35)" }}
+      >
         <motion.div
-          key={`p-${pending.id}`}
+          key={pending.id}
           initial={{ y: 8, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 6, opacity: 0 }}
           transition={{ type: "spring", stiffness: 420, damping: 34 }}
-          className="shrink-0 border-t border-amber-400/45 bg-gradient-to-t from-[#1a0d10] to-[#12080b]/95 backdrop-blur px-3 sm:px-4 py-2.5"
-          style={{ boxShadow: "0 -10px 30px rgba(0,0,0,.5), inset 0 1px 0 rgba(232,188,85,.35)" }}
         >
           <div className="flex items-baseline gap-2 mb-2">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-300 pulse-ring shrink-0" />
@@ -45,32 +50,36 @@ export function DecisionBar({
             ))}
           </div>
         </motion.div>
-      ) : waiting ? (
-        <motion.div
-          key="waiting"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="shrink-0 border-t border-white/10 bg-black/50 backdrop-blur px-4 py-2.5 flex items-center gap-2 text-sm"
-        >
-          <span className="flex gap-1" aria-hidden="true">
-            {[0, 1, 2].map((n) => (
-              <motion.span
-                key={n}
-                className="w-1.5 h-1.5 rounded-full bg-white/50"
-                animate={{ opacity: [0.25, 1, 0.25] }}
-                transition={{ duration: 1.2, repeat: Infinity, delay: n * 0.18 }}
-              />
-            ))}
-          </span>
-          <span className="opacity-70">
-            Waiting for <span className="font-semibold text-amber-200/90">{waiting.name}</span>
-          </span>
-          <span className="opacity-40 text-xs truncate">{waiting.prompt}</span>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
-  );
+      </div>
+    );
+  }
+
+  if (waiting) {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="shrink-0 border-t border-white/10 bg-black/50 backdrop-blur px-4 py-2.5 flex items-center gap-2 text-sm"
+      >
+        <span className="flex gap-1" aria-hidden="true">
+          {[0, 1, 2].map((n) => (
+            <motion.span
+              key={n}
+              className="w-1.5 h-1.5 rounded-full bg-white/50"
+              animate={{ opacity: [0.25, 1, 0.25] }}
+              transition={{ duration: 1.2, repeat: Infinity, delay: n * 0.18 }}
+            />
+          ))}
+        </span>
+        <span className="opacity-70">
+          Waiting for <span className="font-semibold text-amber-200/90">{waiting.name}</span>
+        </span>
+        <span className="opacity-40 text-xs truncate">{waiting.prompt}</span>
+      </motion.div>
+    );
+  }
+
+  return null;
 }
 
 function OptionButton({ o, i, onClick }: { o: Option; i: number; onClick: () => void }) {
