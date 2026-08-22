@@ -217,7 +217,7 @@ export function Game({ creds }: { creds: Creds }) {
               className="shrink-0 border-l border-white/10 bg-black/30 flex flex-col overflow-hidden"
             >
               <div className="w-[280px] flex-1 min-h-0 flex">
-                <EventLog events={events} nameOf={nameOf} />
+                <EventLog events={events} nameOf={nameOf} youSeat={view.you.seat} />
               </div>
             </motion.aside>
           )}
@@ -249,7 +249,7 @@ export function Game({ creds }: { creds: Creds }) {
                 Close
               </button>
               <div className="flex-1 min-h-0 flex">
-                <EventLog events={events} nameOf={nameOf} />
+                <EventLog events={events} nameOf={nameOf} youSeat={view.you.seat} />
               </div>
             </motion.aside>
           </>
