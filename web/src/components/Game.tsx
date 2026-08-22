@@ -15,6 +15,7 @@ import { Zoomable } from "./CardZoom";
 import { Icon } from "./Icons";
 import { DECK_VIOLET } from "../theme";
 import { useFitCards } from "../useBoardScale";
+import { useMediaQuery, WIDE } from "../useMediaQuery";
 
 export function Game({ creds }: { creds: Creds }) {
   const live = useGame((s) => s.view);
@@ -24,8 +25,17 @@ export function Game({ creds }: { creds: Creds }) {
   const status = useGame((s) => s.status);
   const error = useGame((s) => s.error);
   const sockRef = useRef<GameSocket | null>(null);
-  const [showLog, setShowLog] = useState(true);
   const [showIndex, setShowIndex] = useState(false);
+  // Below ~1100px the log costs the board more room than it is worth, so it
+  // becomes an overlay you pull open instead of a column that squeezes the table.
+  const wide = useMediaQuery(WIDE);
+  // Open by default only where it is free; on a narrow screen it would land as a
+  // sheet over the board before you have done anything.
+  const [logOpen, setLogOpen] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(WIDE).matches,
+  );
+  const showLog = logOpen && wide;
+  const showLogDrawer = logOpen && !wide;
 
   useEffect(() => {
     const sock = new GameSocket(creds);
@@ -126,8 +136,8 @@ export function Game({ creds }: { creds: Creds }) {
             ⏮<span className="hidden sm:inline"> Replay</span>
           </HeaderBtn>
         )}
-        <HeaderBtn onClick={() => setShowLog((v) => !v)} title="Toggle the game log">
-          {showLog ? "Hide log" : "Log"}
+        <HeaderBtn onClick={() => setLogOpen((v) => !v)} title="Toggle the game log">
+          {logOpen && wide ? "Hide log" : "Log"}
         </HeaderBtn>
       </header>
 
@@ -199,7 +209,7 @@ export function Game({ creds }: { creds: Creds }) {
               animate={{ width: 280, opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ type: "spring", stiffness: 320, damping: 34 }}
-              className="shrink-0 border-l border-white/10 bg-black/30 hidden md:flex flex-col overflow-hidden"
+              className="shrink-0 border-l border-white/10 bg-black/30 flex flex-col overflow-hidden"
             >
               <div className="w-[280px] flex-1 min-h-0 flex">
                 <EventLog events={events} nameOf={nameOf} />
@@ -208,6 +218,38 @@ export function Game({ creds }: { creds: Creds }) {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Narrow screens get the log as a sheet over the table instead. */}
+      <AnimatePresence>
+        {showLogDrawer && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[60] bg-black/60"
+              onClick={() => setLogOpen(false)}
+            />
+            <motion.aside
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 380, damping: 38 }}
+              className="fixed top-0 right-0 bottom-0 z-[61] w-[min(320px,85vw)] border-l border-white/10 bg-[#120b0d] flex flex-col"
+            >
+              <button
+                onClick={() => setLogOpen(false)}
+                className="self-end m-2 px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-[12px]"
+              >
+                Close
+              </button>
+              <div className="flex-1 min-h-0 flex">
+                <EventLog events={events} nameOf={nameOf} />
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
 
       <CardIndex open={showIndex} onClose={() => setShowIndex(false)} />
     </div>
