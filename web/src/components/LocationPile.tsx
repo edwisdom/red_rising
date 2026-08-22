@@ -98,7 +98,7 @@ export function LocationPile({
 
         <div className="relative flex flex-col items-center">
           {covered.map((c, i) => (
-            <Zoomable key={`${c.card_id ?? "fd"}-${i}`} cardId={c.face_down ? null : c.card_id} list={ids}>
+            <Zoomable key={c.card_id ?? `face-down-${i}`} cardId={c.face_down ? null : c.card_id} list={ids}>
               <CardView cardId={c.card_id} faceDown={c.face_down} width={w} strip stripHeight={band} />
             </Zoomable>
           ))}

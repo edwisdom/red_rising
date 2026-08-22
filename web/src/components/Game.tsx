@@ -374,7 +374,13 @@ function Hand({
           const off = hand.length > 1 ? (i - mid) / Math.max(mid, 1) : 0;
           return (
             <motion.div
-              key={`${id}-${i}`}
+              // Keyed on the card alone, never on its index: the deck holds one
+              // of each card, so the id is unique within a hand, and keying on
+              // position meant playing a card re-keyed every card after it —
+              // React unmounted and remounted them, AnimatePresence ran an exit
+              // and an entrance for cards that never left, and the layout
+              // projection stranded them translated off the edge of the row.
+              key={id}
               layout
               initial={{ opacity: 0, y: 40, scale: 0.85 }}
               animate={{
