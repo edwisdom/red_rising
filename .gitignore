@@ -227,3 +227,7 @@ web/dist/
 web/*.tsbuildinfo
 red_rising.db
 *.db-journal
+
+# Claude Code: per-machine permissions, not shared. launch.json IS shared —
+# it is how the browser tooling starts the dev server.
+.claude/settings.local.json
