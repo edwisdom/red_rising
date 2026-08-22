@@ -11,7 +11,7 @@ import { Scoreboard } from "./Scoreboard";
 import { EventLog } from "./EventLog";
 import { ReplayBar } from "./ReplayBar";
 import { CardIndex } from "./CardIndex";
-import { Zoomable } from "./CardZoom";
+import { useCardZoom, Zoomable } from "./CardZoom";
 import { TurnHerald } from "./TurnHerald";
 import { Icon } from "./Icons";
 import { DECK_VIOLET } from "../theme";
@@ -119,11 +119,14 @@ export function Game({ creds }: { creds: Creds }) {
           tint={DECK_VIOLET}
           icon={<Icon name="Deck" size={12} />}
         />
+        {/* Banished cards are out of the game but still worth knowing — several
+            scoring abilities count them, and you cannot see them anywhere else. */}
         <Pile
           count={view.banished.length}
           label="Banished"
           tint="#8c8c8c"
           icon={<Icon name="Banish" size={12} />}
+          cards={view.banished}
         />
         <span className="flex-1" />
         <ConnDot status={status} />
@@ -384,28 +387,37 @@ function Hand({
   );
 }
 
-// The deck and banished piles, sized so you can feel the deck draining.
+// The deck and banished counts. When a pile holds cards you are allowed to see,
+// it becomes a way into them.
 function Pile({
   count,
   label,
   tint,
   icon,
+  cards,
 }: {
   count: number;
   label: string;
   tint: string;
   icon: React.ReactNode;
+  cards?: string[];
 }) {
+  const { inspect } = useCardZoom();
+  const openable = !!cards?.length;
+  const Tag = openable ? "button" : "span";
   return (
-    <span
-      className="hidden sm:inline-flex items-center gap-1.5 rounded-md px-2 py-1 leading-none"
+    <Tag
+      className={`hidden sm:inline-flex items-center gap-1.5 rounded-md px-2 py-1 leading-none transition ${
+        openable ? "hover:brightness-150 cursor-pointer" : ""
+      }`}
       style={{ background: `${tint}15`, boxShadow: `inset 0 0 0 1px ${tint}35` }}
-      title={`${count} cards ${label.toLowerCase()}`}
+      title={openable ? `Look through the ${count} banished cards` : `${count} cards in the ${label.toLowerCase()}`}
+      onClick={openable ? () => inspect(cards![0], cards) : undefined}
     >
       <span style={{ color: tint }}>{icon}</span>
       <span className="text-[11px] uppercase tracking-wide opacity-55">{label}</span>
       <span className="text-[12px] font-semibold tabular-nums">{count}</span>
-    </span>
+    </Tag>
   );
 }
 
