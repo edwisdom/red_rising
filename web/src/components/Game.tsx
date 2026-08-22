@@ -192,10 +192,10 @@ export function Game({ creds }: { creds: Creds }) {
             <Hand hand={hand} cardTokens={cardTokens} onPlay={answer} yourTurn={yourTurn} />
           </div>
 
+          {/* A finished game takes the screen for its own reveal, then folds down
+              to a one-line result so the final board stays inspectable. */}
           {view.finished ? (
-            <div className="overflow-y-auto thin-scroll px-4 pb-6">
-              <Scoreboard view={view} />
-            </div>
+            <Scoreboard view={view} />
           ) : (
             !replay && (
               <DecisionBar

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import type { LocationView } from "../types";
 import { LOCATION, LOCATION_LABEL } from "../theme";
-import { CardView } from "./CardView";
+import { CardView, stripEm } from "./CardView";
 import { Icon, LOCATION_ICON } from "./Icons";
 import { Zoomable } from "./CardZoom";
 
@@ -29,6 +29,7 @@ export function LocationPile({
   const w = width;
   // Below this the label furniture costs more than it tells you.
   const roomy = w >= 118;
+  const band = stripEm(loc.cards.length);
   const ids = loc.cards.map((c) => c.card_id).filter((x): x is string => !!x);
 
   return (
@@ -98,7 +99,7 @@ export function LocationPile({
         <div className="relative flex flex-col items-center">
           {covered.map((c, i) => (
             <Zoomable key={`${c.card_id ?? "fd"}-${i}`} cardId={c.face_down ? null : c.card_id} list={ids}>
-              <CardView cardId={c.card_id} faceDown={c.face_down} width={w} strip />
+              <CardView cardId={c.card_id} faceDown={c.face_down} width={w} strip stripHeight={band} />
             </Zoomable>
           ))}
           <AnimatePresence mode="popLayout" initial={false}>

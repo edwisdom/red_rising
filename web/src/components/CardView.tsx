@@ -21,12 +21,23 @@ interface Props {
   onInspect?: (cardId: string) => void;
   /** Rendered as the sliver peeking out from under the card above it. */
   strip?: boolean;
+  /** Height of that sliver in em; tighter as the pile it sits in deepens. */
+  stripHeight?: number;
   dim?: boolean;
 }
 
-// The sliver of a covered card that stays visible in a stack, as a fraction of
-// card width. Enough for the value, the portrait and the name.
-const STRIP_EM = 3.1;
+// The sliver of a covered card that stays visible in a stack, in em. A shallow
+// pile shows a comfortable band with the portrait; as it deepens the bands
+// tighten the way a real stack does, so the card itself never has to shrink to
+// keep the whole pile on screen.
+export const STRIP_EM_MAX = 3.1;
+const STRIP_EM_MIN = 1.45;
+const COMFORTABLE_DEPTH = 5;
+
+export function stripEm(stackSize: number): number {
+  if (stackSize <= COMFORTABLE_DEPTH) return STRIP_EM_MAX;
+  return Math.max(STRIP_EM_MIN, (STRIP_EM_MAX * COMFORTABLE_DEPTH) / stackSize);
+}
 
 export function cardHeight(size: CardSize = "md"): number {
   return Math.round(CARD_W[size] * CARD_RATIO);
@@ -41,13 +52,14 @@ export const CardView = memo(function CardView({
   onClick,
   onInspect,
   strip,
+  stripHeight = STRIP_EM_MAX,
   dim,
 }: Props) {
   const w = width ?? CARD_W[size];
   // One root font-size drives every internal dimension, so a card is fully
   // described by its width and stays crisp at any scale.
   const fs = w / 14;
-  const h = strip ? fs * STRIP_EM : w * CARD_RATIO;
+  const h = strip ? fs * stripHeight : w * CARD_RATIO;
 
   const hidden = !cardId || faceDown;
   const card = hidden ? null : getCard(cardId!);
@@ -115,18 +127,24 @@ export const CardView = memo(function CardView({
         onContextMenu={onInspect ? (e) => (e.preventDefault(), onInspect(card.id)) : undefined}
         title={card.name}
       >
-        <div className="flex items-center h-full gap-[0.4em] px-[0.45em]">
-          <Gem value={card.core_value} c={c} em={2.1} />
-          <img
-            src={portrait(card.id)}
-            alt=""
-            loading="lazy"
-            className="rounded-[0.2em] object-cover"
-            style={{ width: "2.05em", height: "2.05em", boxShadow: "0 0 0 0.07em rgba(0,0,0,.35)" }}
-          />
+        <div className="flex items-center h-full gap-[0.3em] px-[0.4em]">
+          <Gem value={card.core_value} c={c} em={Math.min(2.1, stripHeight * 0.72)} />
+          {stripHeight >= 2.4 && (
+            <img
+              src={portrait(card.id)}
+              alt=""
+              loading="lazy"
+              className="rounded-[0.2em] object-cover"
+              style={{
+                width: "2.05em",
+                height: "2.05em",
+                boxShadow: "0 0 0 0.07em rgba(0,0,0,.35)",
+              }}
+            />
+          )}
           <span
             className="truncate font-bold uppercase leading-none"
-            style={{ fontSize: "1.02em", letterSpacing: "0.01em" }}
+            style={{ fontSize: `${Math.min(1.02, stripHeight * 0.42)}em`, letterSpacing: "0.01em" }}
           >
             {card.name}
           </span>

@@ -1,9 +1,9 @@
 import { useLayoutEffect, useRef, useState } from "react";
-import { CARD_RATIO } from "./components/CardView";
+import { CARD_RATIO, stripEm } from "./components/CardView";
 
-// The strip a covered card leaves showing, as a fraction of card width
-// (STRIP_EM / 14 in CardView).
-const STRIP_FRACTION = 3.1 / 14;
+// A card's em scale is its width / 14 (see CardView), so a strip of N em costs
+// N/14 of the card's width in height.
+const EM_PER_WIDTH = 1 / 14;
 
 interface Fit {
   /** How many cards sit side by side. */
@@ -46,7 +46,8 @@ export function useFitCards({
     const measure = () => {
       const { width, height } = el.getBoundingClientRect();
       if (!width || !height) return;
-      const stackFactor = CARD_RATIO + STRIP_FRACTION * Math.max(0, stack - 1);
+      const stackFactor =
+        CARD_RATIO + stripEm(stack) * EM_PER_WIDTH * Math.max(0, stack - 1);
       const byHeight = (height / Math.max(1, rows) - chrome) / stackFactor;
       const n = Math.max(1, lanes);
       const byWidth = (width - gap * (n - 1) - lanePad * n) / n;
