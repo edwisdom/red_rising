@@ -8,6 +8,9 @@ import { Zoomable } from "./CardZoom";
 // A location is a lit plinth with a stack of cards on it. Covered cards show only
 // their top band, exactly like the physical overlap, and the top card is dealt in
 // so you can see what just landed.
+/** Fixed vertical budget for a location's label block (see useFitCards.chrome). */
+export const HEADER_H = 58;
+
 export function LocationPile({
   loc,
   selectable,
@@ -24,34 +27,47 @@ export function LocationPile({
   const top = loc.cards[loc.cards.length - 1];
   const meta = LOCATION[loc.location] ?? { color: "#888", glow: "#888", bonus: "" };
   const w = width;
+  // Below this the label furniture costs more than it tells you.
+  const roomy = w >= 118;
   const ids = loc.cards.map((c) => c.card_id).filter((x): x is string => !!x);
 
   return (
     <div className="flex flex-col items-center gap-1.5" style={{ width: w + 16 }}>
-      <div className="flex flex-col items-center gap-0.5 text-center">
+      {/* The header keeps a fixed budget so the board can size its cards without
+          the label height chasing the card height. The bonus line is the first
+          thing to go when the pile gets small. */}
+      <div
+        className="flex flex-col items-center justify-end gap-0.5 text-center leading-none"
+        style={{ height: HEADER_H }}
+      >
         <span
-          className="grid place-items-center rounded-full"
+          className="grid place-items-center rounded-full shrink-0"
           style={{
-            width: 34,
-            height: 34,
+            width: roomy ? 32 : 24,
+            height: roomy ? 32 : 24,
             color: meta.color,
             background: `radial-gradient(circle, ${meta.color}33, transparent 72%)`,
             filter: `drop-shadow(0 0 7px ${meta.glow}88)`,
           }}
         >
-          <Icon name={LOCATION_ICON[loc.location] ?? "Deck"} size={24} />
+          <Icon name={LOCATION_ICON[loc.location] ?? "Deck"} size={roomy ? 23 : 17} />
         </span>
         <span
-          className={`font-display text-[11px] font-bold uppercase leading-none ${
+          className={`font-display font-bold uppercase leading-none ${
             selectable ? "text-amber-200" : ""
           }`}
-          style={selectable ? undefined : { color: meta.color }}
+          style={{
+            fontSize: roomy ? 11 : 9.5,
+            color: selectable ? undefined : meta.color,
+          }}
         >
           {LOCATION_LABEL[loc.location] ?? loc.location}
         </span>
-        <span className="text-[9.5px] uppercase tracking-wide opacity-45 leading-tight">
-          {meta.bonus}
-        </span>
+        {roomy && (
+          <span className="text-[9.5px] uppercase tracking-wide opacity-45 leading-tight">
+            {meta.bonus}
+          </span>
+        )}
       </div>
 
       <motion.div

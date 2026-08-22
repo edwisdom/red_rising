@@ -4,7 +4,7 @@ import { useGame, type Creds } from "../store";
 import type { PlayerView } from "../types";
 import { GameSocket } from "../ws";
 import { CardView } from "./CardView";
-import { LocationPile } from "./LocationPile";
+import { HEADER_H, LocationPile } from "./LocationPile";
 import { PlayerPanel } from "./PlayerPanel";
 import { DecisionBar } from "./DecisionBar";
 import { Scoreboard } from "./Scoreboard";
@@ -170,7 +170,7 @@ export function Game({ creds }: { creds: Creds }) {
           <Board locations={view.locations} locTokens={locTokens} onSelect={(t) => answer([t])} />
 
           {/* Your side of the table */}
-          <div className="flex-[2] min-h-0 flex flex-col border-t border-white/10 bg-black/30 backdrop-blur-sm">
+          <div className="flex-[2] min-h-[186px] flex flex-col border-t border-white/10 bg-black/30 backdrop-blur-sm">
             <div className="shrink-0 px-3 sm:px-4 pt-2 flex items-center gap-3 flex-wrap">
               <div className="min-w-[240px]">
                 <PlayerPanel
@@ -271,14 +271,17 @@ function Board({
     lanes: locations.length,
     stack: tallest,
     gap: 24,
-    chrome: 86, // location icon, name, bonus line, plinth padding
+    chrome: HEADER_H + 22, // label block + plinth padding + the row's own gap
     lanePad: 16,
+    min: 80,
     max: 210,
   });
+  // A floor on each region, so a short window shrinks the board (which can
+  // scroll) rather than crushing the hand (which cannot).
   return (
     <div
       ref={ref}
-      className="flex-[3] min-h-0 flex items-center justify-center overflow-auto thin-scroll px-3 sm:px-4 py-2"
+      className="flex-[3] min-h-[150px] flex items-center justify-center overflow-auto thin-scroll px-3 sm:px-4 py-2"
     >
       <div className="flex gap-3 sm:gap-6">
         {locations.map((loc) => (
@@ -314,7 +317,7 @@ function Hand({
     gap: 8,
     chrome: 26, // the lift and the arc need headroom inside the scroller
     lanePad: 0,
-    min: 104,
+    min: 76,
     max: 176,
   });
   return (
