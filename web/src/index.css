@@ -154,3 +154,20 @@ body::before {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* The lobby's background fan: a slow float applied on top of each card's own
+   fanned-out transform, so the deck looks like it is breathing. */
+.card-fan {
+  animation-name: fan-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes fan-float {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -14px;
+  }
+}
