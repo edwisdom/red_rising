@@ -1,14 +1,14 @@
 # Fly.io deployment for the Red Rising web app.
 #
 #   fly launch --no-deploy    # first time: creates the app, keep this file
-#   fly volumes create rr_data --size 1
+#   fly volumes create rr_data --size 1 --region ewr   # must match primary_region
 #   fly deploy
 #
 # Auth is the unguessable game link + per-seat token; there are no accounts, so
 # keep the app URL private to you and your partner.
 
 app = "red-rising"
-primary_region = "sea"
+primary_region = "ewr"  # Secaucus, NJ — between NYC and Boston
 
 [build]
   dockerfile = "Dockerfile"
